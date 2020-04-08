@@ -1,0 +1,93 @@
+// 圆角
+.radius (@radius: 5px) {
+    -webkit-border-radius: @radius;
+    -moz-border-radius: @radius;
+    -ms-border-radius: @radius;
+    -o-border-radius: @radius;
+    border-radius: @radius;
+}
+
+// 填充盒模型
+.box-sizing(@box-sizing: border-box) {
+    -webkit-box-sizing: @box-sizing;
+    -moz-box-sizing: @box-sizing;
+    box-sizing: @box-sizing;
+}
+
+// 透明
+.opacity (@value: 0.5) {
+    filter: alpha(opacity=@value);
+    -moz-opacity: @value;
+    -khtml-opacity: @value;
+    opacity: @value;
+}
+
+// 上半部分圆角
+.radius-top(@radius:5px) {
+    -webkit-border-top-left-radius: @radius;
+    -webkit-border-top-right-radius: @radius;
+    -moz-border-radius-topleft: @radius;
+    -moz-border-radius-topright: @radius;
+    border-top-right-radius: @radius;
+    border-top-left-radius: @radius;
+}
+
+// 下半部分圆角
+.radius-bottom(@radius:5px) {
+    -webkit-border-bottom-left-radius: @radius;
+    -webkit-border-bottom-right-radius: @radius;
+    -moz-border-radius-bottomleft: @radius;
+    -moz-border-radius-bottomright: @radius;
+    border-bottom-right-radius: @radius;
+    border-bottom-left-radius: @radius;
+}
+
+// 上下背景渐变
+.gradient(@startColor:#f2f2f2, @endColor:#d4d4d4) {
+    background: -webkit-gradient(linear, left top, left bottom, color-start(0.05, @startColor), color-stop(1, @endColor));
+    background: -moz-linear-gradient(top, @startColor 5%, @endColor 100%);
+    background: -o-linear-gradient(top, @startColor 5%, @endColor 100%);
+    background: -ms-linear-gradient(top, @startColor 5%, @endColor 100%);
+    background: linear-gradient(to bottom, @startColor 5%, @endColor 100%);
+    background: -webkit-linear-gradient(top, @startColor 5%, @endColor 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='@startColor', endColorstr='@endColor', GradientType=0);
+}
+
+// 转换定位
+.translate(@xaxis:0%; @yaxis:0%) {
+    -webkit-transform: translate(@xaxis, @yaxis);
+    -moz-transform: translate(@xaxis, @yaxis);
+    -ms-transform: translate(@xaxis, @yaxis);
+    -o-transform: translate(@xaxis, @yaxis);
+    transform: translate(@xaxis, @yaxis);
+}
+
+// 背景填充
+.background-size(@size:100%) {
+    -moz-background-size: @size @size;
+    -webkit-background-size: @size @size;
+    -o-background-size: @size @size;
+    background-size: @size @size;
+}
+
+// 内阴影
+.shadow-inset(@h:0, @v:1px, @spread:0, @blur:0, @color:#ffffff) {
+    -moz-box-shadow: @h @v @spread @blur @color inset;
+    -webkit-box-shadow: @h @v @spread @blur @color inset;
+    box-shadow: @h @v @spread @blur @color inset;
+}
+
+// 外阴影
+.shadow-out(@h:0, @v:1px, @spread:0, @blur:0, @color:#ffffff) {
+    -moz-box-shadow: @h @v @spread @blur @color;
+    -webkit-box-shadow: @h @v @spread @blur @color;
+    box-shadow: @h @v @spread @blur @color;
+}
+
+// 禁止选中
+.user-select(@select: none) {
+    -webkit-user-select: @select;
+    -ms-user-select: @select;
+    -khtml-user-select: @select;
+    user-select: @select;
+}

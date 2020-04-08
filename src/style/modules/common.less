@@ -1,0 +1,239 @@
+/*
+* 公用类
+*/
+
+// 清除浮动
+.clearfix {
+    _zoom: 1;
+
+    &:after {
+        content: "";
+        display: block;
+        height: 0;
+        font-size: 0;
+        visibility: hidden;
+        clear: both;
+    }
+}
+
+// 位移水平垂直都居中
+.center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    .translate(-50%, -50%);
+}
+
+// 位移水平居中
+.x-center {
+    position: absolute;
+    left: 50%;
+    .translate(-50%);
+}
+
+// 位移垂直居中
+.y-center {
+    position: absolute;
+    top: 50%;
+    .translate(0, -50%);
+}
+
+// 高度和宽度100%
+.inner {
+    height: 100%;
+    width: 100%;
+}
+
+// 宽度100%
+.x-inner {
+    width: 100%;
+}
+
+// 高度100%
+.y-inner {
+    height: 100%;
+}
+
+
+// 必填项
+.required:before,
+.required-before:before,
+.required-after:after {
+    font-style: normal;
+    content: "*";
+    font-size: 12px;
+    vertical-align: middle;
+    color: @error-color
+}
+
+// 星号在前面
+.required:before,
+.required-before {
+    &:before {
+        padding-right: 2px;
+    }
+}
+
+// 星号在后面
+.required-after {
+    &:after {
+        padding-left: 2px;
+    }
+}
+
+// 左浮动
+.fl {
+    float: left;
+}
+
+// 右浮动
+.fr {
+    float: right;
+}
+
+// 文字居中
+.text-center {
+    text-align: center;
+}
+
+// 文字居左
+.text-left {
+    text-align: left;
+}
+
+// 文字居右
+.text-right {
+    text-align: right;
+}
+
+// 外边距
+.m-10 {
+    margin: 10px;
+}
+
+.m-20 {
+    margin: 20px;
+}
+
+.mt-10 {
+    margin-top: 10px;
+}
+
+.mr-10 {
+    margin-right: 10px;
+}
+
+.mb-10 {
+    margin-bottom: 10px;
+}
+
+.ml-10 {
+    margin-left: 10px;
+}
+
+.mt-20 {
+    margin-top: 20px;
+}
+
+.mr-20 {
+    margin-right: 20px;
+}
+
+.mb-20 {
+    margin-bottom: 20px;
+}
+
+.ml-20 {
+    margin-left: 20px;
+}
+
+// 内边距
+.p-10 {
+    padding: 10px;
+}
+
+.p-20 {
+    padding: 20px;
+}
+
+.pt-10 {
+    padding-top: 10px;
+}
+
+.pr-10 {
+    padding-right: 10px;
+}
+
+.pb-10 {
+    padding-bottom: 10px;
+}
+
+.pl-10 {
+    padding-left: 10px;
+}
+
+.pt-20 {
+    padding-top: 20px;
+}
+
+.pr-20 {
+    padding-right: 20px;
+}
+
+.pb-20 {
+    padding-bottom: 20px;
+}
+
+.pl-20 {
+    padding-left: 20px;
+}
+
+// 间距
+.mt-15 {
+    margin-top: 15px;
+}
+
+.primary-color {
+    color: @primary-color;
+}
+
+.error-color {
+    color: @error-color;
+}
+.info-color {
+    color: @info-color;
+}
+
+.success-color {
+    color: @success-color;
+}
+
+.warning-color {
+    color: @warning-color;
+}
+
+.white-color {
+    color: @white;
+}
+
+.black-color {
+    color: @black;
+}
+
+
+/* 字体图标 */
+[class^="el-icon-m-"],
+[class*=" el-icon-m-"] {
+    font-family: iconfont !important;
+    font-size: 16px;
+    font-style: normal;
+    display: inline-block;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-stroke-width: .2px;
+    -moz-osx-font-smoothing: grayscale;
+
+    &.active {
+        color: @primary-color;
+    }
+}
+
