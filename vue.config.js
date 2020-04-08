@@ -41,7 +41,8 @@ module.exports = {
 
   chainWebpack: config => {
     config.plugin('ignore')
-    .use(new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/)); // 忽略/moment/locale下的所有文件
+    // .use(new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/)), // 忽略/moment/locale下的所有文件
+    .use(new webpack.ContextReplacementPlugin(/moment[/\\]locale$/, /zh-cn|en_US/)); // 仅加载zh-cn和en-us语音包
     config.plugin('analyzer')
     .use(new BundleAnalyzerPlugin()) // 使用webpack-bundle-analyzer生成报表
   }
