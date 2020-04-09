@@ -1,7 +1,24 @@
-[*.{js,jsx,ts,tsx,vue}]
+# 统一编码风格 https://editorconfig.org/
+
+# 表明是最顶层的配置文件，发现设为true时，才会停止查找.editorconfig文件
+root = true
+# 匹配js、jsx、ts、tsx、vue、less结尾的文件
+[*.{js,jsx,ts,tsx,vue,less,css}]
+
+# 缩进风格，可选"space"、"tab"
 indent_style = space
+
+# 缩进大小 2个空格
 indent_size = 2
+
+# 结尾换行符，可选"lf"、"cr"、"crlf"
 end_of_line = lf
+
+# 删除一行中的前后空格
 trim_trailing_whitespace = true
+
+# 在文件结尾插入新行
 insert_final_newline = true
+
+# 一行最多100个字符
 max_line_length = 100
