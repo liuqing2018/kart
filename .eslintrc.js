@@ -13,6 +13,9 @@ module.exports = {
   rules: {
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
+
+    // 在对象和数组文字中一致地使用尾随逗号
+    'comma-dangle': 'off'
   },
   overrides: [
     {
