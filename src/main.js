@@ -5,10 +5,12 @@ import './registerServiceWorker';
 import router from './router';
 import store from './store';
 import './style/style.less';
+import MyIcon from './components/MyIcon';
 
 Vue.config.productionTip = false;
 
 Vue.component(Button.name, Button);
+Vue.component('MyIcon', MyIcon);
 
 new Vue({
   router,
