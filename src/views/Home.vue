@@ -2,6 +2,10 @@
   <div class="home">
     <h1>home</h1>
     <div>
+      <divider orientation="left">locale</divider>
+      <p>{{$t('app.title')}}</p>
+    </div>
+    <div>
       <Divider orientation="left">button</Divider>
       <div>
         <a-button type="primary" class="mr-10" @click="handleChangeLang('en_US')">English</a-button>
@@ -35,6 +39,7 @@ export default {
   },
   methods: {
     handleChangeLang(localeValue) {
+      this.$i18n.locale = localeValue;
       this.$store.commit('setLocale', localeValue);
     },
   }

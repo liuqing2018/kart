@@ -2,15 +2,17 @@
  * Created by tudou on 2020/4/10 18:11.
  */
 import { getLocal, setLocal } from '../../lib/utils';
+import { DEFAULT_LANG, LOCALE_KEY } from '../../lib/config';
+
 export default {
   namespace: true,
   state: {
     // 多语言支持 zh_CN || en_US
-    locale: 'zh_CN'
+    locale: DEFAULT_LANG
   },
   getters: {
-    getLocale() {
-      return getLocal('locale') || this.$store.state.locale;
+    getLocale(state) {
+      return getLocal(LOCALE_KEY) || state.locale;
     },
   },
 
@@ -18,10 +20,10 @@ export default {
   mutations: {
     setLocale(state, payload) {
       state.locale = payload;
-      setLocal('locale', payload);
+      setLocal(LOCALE_KEY, payload);
     },
   },
 
   // 异步更改state，只能提交到mutations
   actions: {}
-}
+};

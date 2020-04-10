@@ -15,7 +15,12 @@ module.exports = {
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
 
     // 在对象和数组文字中一致地使用尾随逗号
-    'comma-dangle': 'off'
+    'comma-dangle': 'off',
+
+    // 强制驼峰命名
+    'camelcase': ['error', {
+      'properties': 'never'
+    }]
   },
   overrides: [
     {
