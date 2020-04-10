@@ -1,5 +1,11 @@
 import Vue from 'vue';
-import { Button } from 'ant-design-vue';
+import {
+  Button,
+  Input,
+  InputNumber,
+  message,
+  notification,
+} from 'ant-design-vue';
 import App from './App.vue';
 import './registerServiceWorker';
 import router from './router';
@@ -10,6 +16,8 @@ import MyIcon from './components/MyIcon';
 Vue.config.productionTip = false;
 
 Vue.component(Button.name, Button);
+Vue.component(Input.name, Input);
+Vue.component(InputNumber.name, InputNumber);
 Vue.component('MyIcon', MyIcon);
 
 new Vue({

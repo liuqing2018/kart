@@ -2,35 +2,41 @@
   <div class="home">
     <h1>home</h1>
     <div>
-      <a-button type="primary">Primary</a-button>
-      <a-button>Default</a-button>
-      <a-button type="dashed">Dashed</a-button>
-      <a-button type="danger">Danger</a-button>
-      <!--<a-config-provider :autoInsertSpaceInButton="false">-->
-      <!--<a-button type="primary">按钮</a-button>-->
-      <!--</a-config-provider>-->
-      <a-button type="primary">按钮</a-button>
-      <a-button type="link">Link</a-button>
-
-      <div class="icons-list">
-        <a-icon type="home" />
-        <a-icon type="setting" theme="filled" />
-        <a-icon type="smile" theme="outlined" />
-        <a-icon type="sync" spin />
-        <a-icon type="smile" :rotate="180" />
-        <a-icon type="loading" />
+      <Divider orientation="left">button</Divider>
+      <div>
+        <a-button type="primary" class="mr-10" @click="handleChangeLang('en_US')">English</a-button>
+        <a-button type="danger " class="mr-10" @click="handleChangeLang('zh_CN')">中文</a-button>
       </div>
+    </div>
 
+    <div>
+      <Divider orientation="left">IconFont</Divider>
       <my-icon type="el-icon-m-user" :spin="true" class="icon"></my-icon>
       <my-icon type="el-icon-m-pwd" :spin="true" class="icon"></my-icon>
+    </div>
+    <div>
+      <divider orientation="left">TimePicker</divider>
+      <TimePicker></TimePicker>
     </div>
   </div>
 </template>
 
 <script>
+import { TimePicker, Divider } from 'ant-design-vue';
+
 export default {
   name: 'Home',
   components: {
+    TimePicker,
+    Divider,
   },
+  data() {
+    return {};
+  },
+  methods: {
+    handleChangeLang(localeValue) {
+      this.$store.commit('setLocale', localeValue);
+    },
+  }
 };
 </script>
