@@ -37,9 +37,13 @@ module.exports = {
     config.resolve.alias = {
       '@': path.resolve(__dirname, 'src'),
     };
+
+    // 导入文件的扩展名称顺序
+    config.resolve.extensions = ['.js', '.vue', '.json', '.less', '.css'];
   },
 
   chainWebpack: config => {
+    // 配置不打包的文件
     config.plugin('ignore')
     // .use(new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/)), // 忽略/moment/locale下的所有文件
     .use(new webpack.ContextReplacementPlugin(/moment[/\\]locale$/, /zh-cn|en_US/)); // 仅加载zh-cn和en-us语音包
