@@ -44,9 +44,9 @@
         </a-dropdown>
       </div>
       <div class="app-header__action--item">
-        <a-radio-group @change="onChange" defaultValue="a">
-          <a-radio-button value="a">中文</a-radio-button>
-          <a-radio-button value="c">English</a-radio-button>
+        <a-radio-group @change="handleLocaleChange" defaultValue="zh_CN">
+          <a-radio-button value="zh_CN">中文</a-radio-button>
+          <a-radio-button value="en_US">English</a-radio-button>
         </a-radio-group>
       </div>
     </div>
@@ -54,23 +54,27 @@
 </template>
 
 <script>
-  export default {
-    name: 'AppHeader',
-    components: {},
-    props: {},
-    data() {
-      return {};
-    },
-    computed: {},
-    watch: {},
-    created() {
-    },
-    mounted() {
-    },
-    destroyed() {
-    },
-    methods: {}
-  };
+export default {
+  name: 'AppHeader',
+  components: {},
+  props: {},
+  data() {
+    return {};
+  },
+  computed: {},
+  watch: {},
+  created() {
+  },
+  mounted() {
+  },
+  destroyed() {
+  },
+  methods: {
+    handleLocaleChange(value) {
+      console.log(value);
+    }
+  }
+};
 </script>
 
 <style lang="less" scoped>

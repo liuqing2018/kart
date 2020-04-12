@@ -8,6 +8,7 @@
     </app-sider>
     <a-layout>
       <app-header></app-header>
+      <app-bread-crumb></app-bread-crumb>
       <app-content>
         <router-view></router-view>
       </app-content>
@@ -17,11 +18,12 @@
 </template>
 
 <script>
-import AppSider from './AppSider';
-import AppMenu from './AppMenu';
-import AppHeader from './AppHeader';
-import AppContent from './AppContent';
-import AppFooter from './AppFooter';
+import AppSider from './AppSider.vue';
+import AppMenu from './AppMenu.vue';
+import AppHeader from './AppHeader.vue';
+import AppBreadCrumb from './AppBreadCrumb.vue';
+import AppContent from './AppContent.vue';
+import AppFooter from './AppFooter.vue';
 
 export default {
   name: 'Index.vue',
@@ -29,6 +31,7 @@ export default {
     AppSider,
     AppMenu,
     AppHeader,
+    AppBreadCrumb,
     AppContent,
     AppFooter
   },

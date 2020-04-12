@@ -2,9 +2,7 @@
 * Created by tudou on 2020/4/11 20:47.
 */
 <template>
-  <a-layout-content
-    :style="{ margin: '24px 16px', padding: '24px', background: '#fff', minHeight: '280px' }" style="border: 2px solid red;"
-  >
+  <a-layout-content class="app-content">
     <slot></slot>
   </a-layout-content>
 </template>
@@ -30,5 +28,10 @@
 </script>
 
 <style lang="less" scoped>
-
+.app-content {
+  margin: 16px;
+  padding: 24px;
+  min-height: 280px;
+  background: #fff;
+}
 </style>
