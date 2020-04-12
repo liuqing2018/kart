@@ -9,11 +9,13 @@ const routes = [
     path: '/',
     name: 'Home',
     component: resolve => require(['@/views/main/Index.vue'], resolve),
-  },
-  {
-    path: '/about',
-    name: 'About',
-    component: resolve => require(['@/views/About'], resolve),
+    children: [
+      {
+        path: '/member',
+        name: 'member',
+        component: resolve => require(['@/views/member/MemberList.vue'], resolve),
+      },
+    ]
   },
 ];
 

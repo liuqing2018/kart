@@ -4,7 +4,9 @@
 <template>
   <a-layout-header class="app-header">
     <div class="app-header__message mr-10">
-      <p class="text-ellipsis">随机文案</p>
+      <p class="text-ellipsis">
+        <app-bread-crumb></app-bread-crumb>
+      </p>
     </div>
     <div class="app-header__action">
       <div class="app-header__action--item">
@@ -54,9 +56,13 @@
 </template>
 
 <script>
+import AppBreadCrumb from './AppBreadCrumb.vue';
+
 export default {
   name: 'AppHeader',
-  components: {},
+  components: {
+    AppBreadCrumb,
+  },
   props: {},
   data() {
     return {};
