@@ -9,7 +9,11 @@
     @click="handleMenuClick"
   >
     <template v-for="item in menuList">
-      <sub-menu v-if="item.children && item.children.length > 0" :menu-data="item" :key="item.title"></sub-menu>
+      <sub-menu
+        v-if="item.children && item.children.length > 0"
+        :menu-data="item"
+        :key="item.title">
+      </sub-menu>
       <a-menu-item v-else :key="item.title">
         <my-icon :type="item.icon"></my-icon>
         <span>{{ item.title }}</span>
