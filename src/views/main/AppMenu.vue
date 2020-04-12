@@ -108,6 +108,7 @@ export default {
   },
   methods: {
     handleMenuClick(item, key, keyPath) {
+      console.log('handleMenuClick: ');
       console.log(item);
       console.log(key);
       console.log(keyPath);

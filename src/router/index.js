@@ -8,7 +8,7 @@ const routes = [
   {
     path: '/',
     name: 'Home',
-    component: resolve => require(['@/views/Main/Index.vue'], resolve),
+    component: resolve => require(['@/views/main/Index.vue'], resolve),
   },
   {
     path: '/about',

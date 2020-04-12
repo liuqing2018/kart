@@ -13,7 +13,7 @@ import './registerServiceWorker';
 import router from './router';
 import store from './store';
 import './style/index.less';
-import MyIcon from './components/MyIcon';
+import MyIcon from './components/myIcon';
 import i18n from './locale';
 
 Vue.config.productionTip = false;
