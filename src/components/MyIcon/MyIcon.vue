@@ -5,6 +5,7 @@
   <BaseIcon
     class="my-icon"
     :type="type"
+    :style="myStyle"
     :theme="theme"
     :spin="spin"
     :rotate="rotate"
@@ -25,7 +26,7 @@ export default {
   },
   props: [
     'type',
-    // 'style',
+    'myStyle',
     'theme',
     'spin',
     'rotate',

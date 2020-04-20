@@ -30,6 +30,14 @@ npm run test:e2e
 npm run lint
 ```
 
+### 文案同一
+```
+添加: 新建、新增、增加
+查询：搜索、检索、查找
+
+
+
+```
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
 

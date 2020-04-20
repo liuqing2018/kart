@@ -20,7 +20,10 @@ module.exports = {
     // 强制驼峰命名
     'camelcase': ['error', {
       'properties': 'never'
-    }]
+    }],
+
+    // 单行代码长度
+    'max-len': ['error', 150],
   },
   overrides: [
     {

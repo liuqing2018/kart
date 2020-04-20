@@ -11,7 +11,7 @@
       <app-content>
         <router-view></router-view>
       </app-content>
-      <app-footer></app-footer>
+      <!--<app-footer></app-footer>-->
     </a-layout>
   </a-layout>
 </template>
@@ -21,7 +21,7 @@ import AppSider from './AppSider.vue';
 import AppMenu from './AppMenu.vue';
 import AppHeader from './AppHeader.vue';
 import AppContent from './AppContent.vue';
-import AppFooter from './AppFooter.vue';
+// import AppFooter from './AppFooter.vue';
 
 export default {
   name: 'Index.vue',
@@ -30,7 +30,7 @@ export default {
     AppMenu,
     AppHeader,
     AppContent,
-    AppFooter
+    // AppFooter
   },
   data() {
     return {
