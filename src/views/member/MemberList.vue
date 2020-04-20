@@ -22,15 +22,6 @@
         <form-item label="用户名">
           <a-input v-model="queryModel.user" placeholder="用户名"></a-input>
         </form-item>
-        <form-item label="用户名">
-          <a-input v-model="queryModel.user" placeholder="用户名"></a-input>
-        </form-item>
-        <form-item label="用户名">
-          <a-input v-model="queryModel.user" placeholder="用户名"></a-input>
-        </form-item>
-        <form-item label="用户名">
-          <a-input v-model="queryModel.user" placeholder="用户名"></a-input>
-        </form-item>
       </template>
       <template slot="btns">
       </template>

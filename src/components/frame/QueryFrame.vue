@@ -31,7 +31,7 @@
     <!-- 查询条件 结束 -->
 
     <!-- 查询结果 开始 -->
-    <div class="query__main">
+    <div :class="{'query__main': true, 'is--bar-visiable': barVisiable}">
       <!-- 支持 默认的新增-->
       <div class="query__options">
         <a-button class="mr-10" type="primary" icon="plus" v-if="addVisiable" :disabled="addDisable" @click="handleAdd">{{addText}}</a-button>
@@ -240,11 +240,15 @@ export default {
   }
 
   .query__main {
-    margin: 30px 16px;
+    margin: 16px;
     padding: 16px;
     background: #fff;
     flex: 1 0 auto;
     overflow: auto;
+
+    &.is--bar-visiable {
+      margin: 30px 16px;
+    }
 
     .query__options {
       margin-bottom: 16px;
