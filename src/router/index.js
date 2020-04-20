@@ -15,6 +15,11 @@ const routes = [
         name: 'member',
         component: resolve => require(['@/views/member/MemberList.vue'], resolve),
       },
+      {
+        path: '/memberAdd',
+        name: 'memberAdd',
+        component: resolve => require(['@/views/member/MemberAdd.vue'], resolve),
+      },
     ]
   },
 ];

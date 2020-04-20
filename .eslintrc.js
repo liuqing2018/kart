@@ -24,6 +24,9 @@ module.exports = {
 
     // 单行代码长度
     'max-len': ['error', 150],
+
+    // 动态导入
+    'import/no-dynamic-require': 'off',
   },
   overrides: [
     {

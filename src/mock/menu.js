@@ -12,7 +12,7 @@ const data = [
   {
     key: '2',
     title: '充值管理',
-    url: '/home2',
+    url: '/memberAdd',
     icon: 'icon-setting',
     children: []
   },
