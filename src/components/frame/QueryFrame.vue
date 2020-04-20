@@ -55,6 +55,19 @@
       <!--</div>-->
       <div class="query__result">
         <slot name="table"></slot>
+        <div class="query__page" v-if="pageVisiable">
+          <a-pagination
+            showQuickJumper
+            showSizeChanger
+            :current="current"
+            :page-size="pageSize"
+            :show-total="showTotal"
+            :page-size-options="['10', '20', '30', '40', '50', '100']"
+            :total="total"
+            @showSizeChange="handlePageSizeChange"
+            @change="handlePageNoChange">
+          </a-pagination>
+        </div>
       </div>
     </div>
     <!-- 查询结果 结束 -->
@@ -78,9 +91,18 @@ export default {
       type: Boolean,
       default: false,
     },
-    pageVisiable: { // 是否隐藏分页器 true适用于无分页列表
+    current: Number, // 当前页
+    pageSize: { // 每页显示多少条数据
+      type: Number,
+      default: 10,
+    },
+    total: { // 总记录数
+      type: Number,
+      default: 0,
+    },
+    pageVisiable: { // 是否显示分页器 false适用于无分页列表
       type: Boolean,
-      default: false,
+      default: true,
     }
   },
   data() {
@@ -134,7 +156,24 @@ export default {
     // 添加
     handleAdd() {
       this.$emit('add');
-    }
+    },
+
+    // 用于显示数据总量和当前数据顺序
+    showTotal(total, range) {
+      return `共 ${total} 条`;
+    },
+
+    // 页码改变的回调，参数是改变后的页码及每页条数
+    handlePageNoChange(pageNo, pageSize) {
+      console.log(pageNo);
+      this.$emit('pageNoChange', pageNo, pageSize);
+    },
+
+    // pageSize 变化的回调
+    handlePageSizeChange(current, pageSize) {
+      this.$emit('pageSizeChange', current, pageSize);
+    },
+
   }
 };
 </script>
@@ -228,6 +267,11 @@ export default {
       }
     }
     .query__result {
+    }
+
+    .query__page {
+      margin-top: 16px;
+      text-align: right;
     }
   }
 </style>

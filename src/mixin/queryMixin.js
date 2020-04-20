@@ -1,48 +1,44 @@
-import utils from '../libs/utils';
-
+/**
+ * 方法说明：在使用分页的页面引入该mixin，避免相同的方法重复书写；
+ */
 export default {
   data() {
     return {
       // 分页的相关配置
-
-      page: 1, // 当前页
-      size: 20, // 分页大小
-      // pageSizesOpts: [10, 20, 30, 40, 50, 100], // 页码大小
-      count: 0, // 总记录数
-      disablePage: false, // 是否禁用分页（隐藏）
+      page: {
+        current: 1, // 当前页
+        pageSize: 10, // 分页大小
+        total: 0, // 总记录数
+      },
       params: {}, // 检索模型的副本, 实际传递到后台到参数
-      tableLoading: false,
     };
   },
   methods: {
-    // 点击查询按钮查询数据 handleQuery
-    handleSearch(first, callback) {
-      this.$nextTick(() => { // 解决默认值赋值问题
-
-        this.params = utils.deepClone(this.query); // 复制检索模型副本 避免切换分页数后数据变动
-        this.page = 1; // 重置页码到第一页
-        this.getData(); // 获取分页数据
-        callback && callback(); // 手动查询同时执行的方法
-      });
-    },
-
-    // 切换每页显示的条数
-    handlePageSize(val, isTransform = true) {
-      this.size = val;
-      if (this.page == 1) {
-        this.getData(isTransform);
-      } else {
-        this.page = 1;
-      }
+    // 点击查询按钮查询数据
+    handleQuery(callback) {
+      this.params = Object.assign({}, this.query); // 复制检索模型副本 避免切换分页数后数据变动
+      this.page.current = 1; // 重置页码到第一页
+      this.getData(); // 获取分页数据
+      callback && callback(); // 查询是同时执行的方法
     },
 
     // 切换页面
-    handlePage(val, isTransform = true) { // isTransform用于标识getData内查询参数是否已经转换过
-      this.page = val;
-      this.getData(isTransform); // 获取分页数据
+    handlePageNoChange(pageNo, pageSize, isTransform = true) {  // isTransform用于标识getData内查询参数是否已经转换过, 切换分页的时候不在转换数据
+      this.page.current = pageNo;
+      this.getData(isTransform);
     },
-  },
-  created() {
 
+    // 切换每页显示的条数
+    handlePageSizeChange(current, pageSize, isTransform = true) {
+      this.page.pageSize = pageSize;
+      this.page.current = 1;
+      this.getData(isTransform);
+    },
+
+    // 重置查询条件
+    handleReset(callback) {
+      this.queryModel = {};
+      callback && callback();
+    }
   },
 };

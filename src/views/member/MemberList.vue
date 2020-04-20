@@ -4,9 +4,13 @@
 <template>
   <div class="base-content">
     <query-frame
-      add-visiable="false"
-      @query="handleSearch"
+      :current="page.current"
+      :total="page.total"
+      @query="handleQuery"
+      @reset="handleReset"
       @add="handleAdd"
+      @pageNoChange="handlePageNoChange"
+      @pageSizeChange="handlePageSizeChange"
     >
       <template slot="query">
         <form-item label="用户名">
@@ -31,7 +35,7 @@
       <template slot="btns">
       </template>
       <template slot="table">
-        <a-table :columns="columns" :dataSource="data">
+        <a-table :columns="columns" :dataSource="data" :pagination="false" bordered>
           <a slot="name" slot-scope="text">{{ text }}</a>
         </a-table>
       </template>
@@ -43,9 +47,11 @@
 <script>
 import QueryFrame from '../../components/frame/QueryFrame.vue';
 import FormItem from '../../components/FormItem.vue';
+import queryMixin from '../../mixin/queryMixin';
 
 export default {
   name: 'MemberList',
+  mixins: [queryMixin],
   components: {
     QueryFrame,
     FormItem,
@@ -118,26 +124,52 @@ export default {
           address: 'Sidney No. 1 Lake Park, Sidney No. 1 Lake Park',
           tags: ['cool', 'teacher'],
         },
+        {
+          key: '4',
+          name: 'John Brown',
+          age: 32,
+          address: 'New York No. 1 Lake Park, New York No. 1 Lake Park',
+          tags: ['nice', 'developer'],
+        },
+        {
+          key: '5',
+          name: 'Jim Green',
+          age: 42,
+          address: 'London No. 2 Lake Park, London No. 2 Lake Park',
+          tags: ['loser'],
+        },
+        {
+          key: '6',
+          name: 'Joe Black',
+          age: 32,
+          address: 'Sidney No. 1 Lake Park, Sidney No. 1 Lake Park',
+          tags: ['cool', 'teacher'],
+        },
       ]
     };
   },
   computed: {},
   watch: {},
   created() {
+    this.handleQuery();
   },
-  mounted() {},
+  mounted() {
+  },
   destroyed() {
   },
   methods: {
-    handleSearch() {
-      console.log('============ handle Search ==========');
+    getData() {
+      console.log('============ getData ===============');
     },
     handleAdd() {
-      console.log('============ handleAdd ==========');
+      console.log('添加');
     },
   }
 };
 </script>
 
 <style lang="less" scoped>
+  .base-content {
+    height: 100%;
+  }
 </style>
