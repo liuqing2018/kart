@@ -34,7 +34,7 @@
     <div :class="{'query__main': true, 'is--bar-visiable': barVisiable}">
       <!-- 支持 默认的新增-->
       <div class="query__options">
-        <a-button class="mr-10" type="primary" icon="plus" v-if="addVisiable" :disabled="addDisable" @click="handleAdd">{{addText}}</a-button>
+        <a-button class="mr-10" type="primary" icon="plus" v-if="addVisiable" :disabled="addDisable" @click="handleAdd">{{addBtnTxt}}</a-button>
         <!--<a-button class="mr-10" type="primary" icon="plus">下载download</a-button>-->
         <!--<a-button class="mr-10" type="primary" icon="plus">打印print</a-button>-->
         <!--<a-button class="mr-10" type="primary" icon="plus">删除delete</a-button>-->
@@ -81,9 +81,6 @@ export default {
   props: {
     addText: { // 添加按钮的文字
       type: [String, Boolean, Number],
-      default() {
-        return this.$t('common.addBtn');
-      },
     },
     addVisiable: { // 是否显示添加按钮
       type: Boolean,
@@ -114,9 +111,8 @@ export default {
     };
   },
   computed: {
-    addBtn() {
-      console.log('============= addBtn ==============');
-      return this.$t('common.addBtn');
+    addBtnTxt() {
+      return this.addText || this.$t('common.addBtn');
     }
   },
   watch: {},
@@ -166,7 +162,7 @@ export default {
     },
 
     // 用于显示数据总量和当前数据顺序
-    showTotal(total, range) {
+    showTotal(total) {
       return `${this.$t('common.pageTotal')} ${total} ${this.$t('common.pageItem')}`;
     },
 

@@ -11,9 +11,10 @@
           subTitle="会员详情"
         >
           <template slot="extra">
-            <a-button v-if="resetVisiable" :disabled="resetDisable" @click="handleReset">{{resetText}}</a-button>
-            <a-button type="danger" icon="plus" v-if="saveVisiable" :disabled="saveDisable" @click="handleSave">{{saveText}}</a-button>
-            <a-button class="mr-10" type="primary" icon="plus" v-if="submitVisiable" :disabled="submitDisable" @click="handleSubmit">{{submitText}}</a-button>
+            <a-button v-if="logVisiable" :disabled="logDisable" @click="handleLog">{{logBtnTxt}}</a-button>
+            <a-button v-if="resetVisiable" :disabled="resetDisable" @click="handleReset">{{resetBtnTxt}}</a-button>
+            <a-button type="danger" icon="plus" v-if="saveVisiable" :disabled="saveDisable" @click="handleSave">{{saveBtnTxt}}</a-button>
+            <a-button class="mr-10" type="primary" icon="plus" v-if="submitVisiable" :disabled="submitDisable" @click="handleSubmit">{{submitBtnTxt}}</a-button>
             <slot name="btns"></slot>
           </template>
           <slot name="info">
@@ -32,93 +33,113 @@
 </template>
 
 <script>
-  export default {
-    name: 'FormFrame',
-    components: {},
-    props: {
-      resetText: { // 重置按钮的文字
-        type: [String, Boolean, Number],
-        default() {
-          return this.$t('common.resetBtn');
-        },
-      },
-      resetVisiable: { // 是否显示重置按钮
-        type: Boolean,
-        default: true,
-      },
-      resetDisable: { // 是否禁用重置按钮
-        type: Boolean,
-        default: false,
-      },
-      saveText: { // 保存按钮的文字
-        type: [String, Boolean, Number],
-        default() {
-          return this.$t('common.saveBtn');
-        },
-      },
-      saveVisiable: { // 是否显示保存按钮
-        type: Boolean,
-        default: true,
-      },
-      saveDisable: { // 是否禁用保存按钮
-        type: Boolean,
-        default: false,
-      },
-      submitText: { // 提交按钮的文字
-        type: [String, Boolean, Number],
-        default() {
-          return this.$t('common.submitBtn');
-        },
-      },
-      submitVisiable: { // 是否显示提交按钮
-        type: Boolean,
-        default: true,
-      },
-      submitDisable: { // 是否禁用提交按钮
-        type: Boolean,
-        default: false,
-      },
-      infoList: { // 头部包含的详情信息||页面内容简介
-        type: Array,
-        default() {
-          return [];
-        },
+export default {
+  name: 'FormFrame',
+  components: {},
+  props: {
+    logText: { // 操作日志按钮的文字
+      type: [String, Boolean, Number],
+    },
+    logVisiable: { // 是否显示操作日志按钮
+      type: Boolean,
+      default: true,
+    },
+    logDisable: { // 是否禁用操作日志按钮
+      type: Boolean,
+      default: false,
+    },
+    resetText: { // 重置按钮的文字
+      type: [String, Boolean, Number],
+    },
+    resetVisiable: { // 是否显示重置按钮
+      type: Boolean,
+      default: true,
+    },
+    resetDisable: { // 是否禁用重置按钮
+      type: Boolean,
+      default: false,
+    },
+    saveText: { // 保存按钮的文字
+      type: [String, Boolean, Number],
+    },
+    saveVisiable: { // 是否显示保存按钮
+      type: Boolean,
+      default: true,
+    },
+    saveDisable: { // 是否禁用保存按钮
+      type: Boolean,
+      default: false,
+    },
+    submitText: { // 提交按钮的文字
+      type: [String, Boolean, Number],
+    },
+    submitVisiable: { // 是否显示提交按钮
+      type: Boolean,
+      default: true,
+    },
+    submitDisable: { // 是否禁用提交按钮
+      type: Boolean,
+      default: false,
+    },
+    infoList: { // 头部包含的详情信息||页面内容简介
+      type: Array,
+      default() {
+        return [];
       },
     },
-    data() {
-      return {
-      };
+  },
+  data() {
+    return {
+    };
+  },
+  computed: {
+    logBtnTxt() {
+      return this.logText || this.$t('common.logBtn');
     },
-    computed: {},
-    watch: {},
-    created() {
+    resetBtnTxt() {
+      return this.resetText || this.$t('common.resetBtn');
     },
-    mounted() {
+    saveBtnTxt() {
+      return this.saveText || this.$t('common.saveBtn');
     },
-    destroyed() {
+    submitBtnTxt() {
+      return this.submitText || this.$t('common.submitBtn');
     },
-    methods: {
-      // 返回上级列表
-      handleToList() {
-        this.$router.go(-1); // todo 需要解决连击问题 2.iconfont替换原有内容
-      },
+  },
+  watch: {},
+  created() {
+  },
+  mounted() {
+  },
+  destroyed() {
+  },
+  methods: {
+    // 返回上级列表
+    handleToList() {
+      this.$router.go(-1); // todo 需要解决连击问题 2.iconfont替换原有内容
+    },
 
-      // 重置操作
-      handleReset() {
-        this.$emit('on-reset');
-      },
+    // 操作日志
+    handleLog() {
+      this.$emit('on-log');
+    },
 
-      // 保存操作
-      handleSave() {
-        this.$emit('on-save');
-      },
+    // 重置操作
+    handleReset() {
+      this.$emit('on-reset');
+    },
 
-      // 提交操作
-      handleSubmit() {
-        this.$emit('on-submit');
-      },
-    }
-  };
+    // 保存操作
+    handleSave() {
+      this.$emit('on-save');
+    },
+
+    // 提交操作
+    handleSubmit() {
+      this.$emit('on-submit');
+    },
+  }
+};
 </script>
 
 <style lang="less" scoped>

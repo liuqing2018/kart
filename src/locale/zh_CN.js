@@ -14,6 +14,7 @@ export default {
     downloadBtn: '下载',
     printBtn: '打印',
     deleteBtn: '删除',
+    logBtn: '操作日志',
     saveBtn: '保存',
     submitBtn: '提交',
     barUnfold: '展开',
@@ -21,4 +22,4 @@ export default {
     pageTotal: '共',
     pageItem: '条',
   }
-}
+};

@@ -4,7 +4,7 @@
 <template>
   <a-layout-sider :trigger="null" collapsible v-model="collapsed" style="overflow: auto">
     <div class="menu-title__wrap">
-      <span v-if='!collapsed'>My-Kart</span>
+      <span v-if='!collapsed'>{{$t('app.title')}}</span>
       <my-icon
         class="ml-10"
         :type="collapsed ? 'icon-unfold' : 'icon-fold'"

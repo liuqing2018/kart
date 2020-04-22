@@ -14,6 +14,7 @@ export default {
     downloadBtn: 'Download',
     printBtn: 'Print',
     deleteBtn: 'Delete',
+    logBtn: 'Operation Log',
     saveBtn: 'Save',
     submitBtn: 'Submit',
     barUnfold: 'Unfold',
