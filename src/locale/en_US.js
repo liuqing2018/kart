@@ -4,6 +4,21 @@
 export default {
   // global
   app: {
-    title: 'this is locale test!',
-  }
-}
+    title: 'M-kart',
+    todo: 'Todo List',
+  },
+  common: {
+    queryBtn: 'Search',
+    resetBtn: 'Reset',
+    addBtn: 'Add',
+    downloadBtn: 'Download',
+    printBtn: 'Print',
+    deleteBtn: 'Delete',
+    saveBtn: 'Save',
+    submitBtn: 'Submit',
+    barUnfold: 'Unfold',
+    barFold: 'Fold',
+    pageTotal: 'Total',
+    pageItem: 'items',
+  },
+};

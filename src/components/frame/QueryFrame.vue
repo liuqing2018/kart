@@ -17,14 +17,14 @@
           <!-- 自定义条件 结束 -->
 
           <a-form-model-item class="query-item">
-            <a-button class="mr-10" type="primary" html-type="submit" icon="search" @click.stop="handleSearch">查询</a-button>
-            <a-button html-type="reset" icon="rollback" @click.stop="handleReset">重置</a-button>
+            <a-button class="mr-10" type="primary" html-type="submit" icon="search" @click.stop="handleSearch">{{$t('common.queryBtn')}}</a-button>
+            <a-button html-type="reset" icon="rollback" @click.stop="handleReset">{{$t('common.resetBtn')}}</a-button>
           </a-form-model-item>
         </div>
       </a-form-model>
       <div class="query-bar" v-if="barVisiable" @click="handleBarToggle()">
         <span
-          :class="{'primary-color': isBarOpen, '': !isBarOpen}">{{isBarOpen ? '收起' : '展开'}}
+          :class="{'primary-color': isBarOpen, '': !isBarOpen}">{{isBarOpen ? $t('common.barFold') : $t('common.barUnfold')}}
           <my-icon :type="isBarOpen ? 'icon-menu-up' : 'icon-menu-down'"></my-icon></span>
       </div>
     </div>
@@ -81,7 +81,9 @@ export default {
   props: {
     addText: { // 添加按钮的文字
       type: [String, Boolean, Number],
-      default: '添加',
+      default() {
+        return this.$t('common.addBtn');
+      },
     },
     addVisiable: { // 是否显示添加按钮
       type: Boolean,
@@ -111,7 +113,12 @@ export default {
       isBarOpen: true, // 展开|收起查询条件 默认展开，用户获取ref=queryCondition的高度
     };
   },
-  computed: {},
+  computed: {
+    addBtn() {
+      console.log('============= addBtn ==============');
+      return this.$t('common.addBtn');
+    }
+  },
   watch: {},
   created() {
   },
@@ -160,7 +167,7 @@ export default {
 
     // 用于显示数据总量和当前数据顺序
     showTotal(total, range) {
-      return `共 ${total} 条`;
+      return `${this.$t('common.pageTotal')} ${total} ${this.$t('common.pageItem')}`;
     },
 
     // 页码改变的回调，参数是改变后的页码及每页条数

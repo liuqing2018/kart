@@ -26,7 +26,6 @@
     </div>
     <div class="form-frame__content">
       <slot name="content">
-        <h3>默认内容</h3>
       </slot>
     </div>
   </div>
@@ -39,7 +38,9 @@
     props: {
       resetText: { // 重置按钮的文字
         type: [String, Boolean, Number],
-        default: '重置',
+        default() {
+          return this.$t('common.resetBtn');
+        },
       },
       resetVisiable: { // 是否显示重置按钮
         type: Boolean,
@@ -51,7 +52,9 @@
       },
       saveText: { // 保存按钮的文字
         type: [String, Boolean, Number],
-        default: '保存',
+        default() {
+          return this.$t('common.saveBtn');
+        },
       },
       saveVisiable: { // 是否显示保存按钮
         type: Boolean,
@@ -63,7 +66,9 @@
       },
       submitText: { // 提交按钮的文字
         type: [String, Boolean, Number],
-        default: '提交',
+        default() {
+          return this.$t('common.submitBtn');
+        },
       },
       submitVisiable: { // 是否显示提交按钮
         type: Boolean,

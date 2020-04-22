@@ -12,7 +12,7 @@
       <div class="app-header__action--item">
         <a-badge :count="0">
           <span class="action__notice">
-            <my-icon type="icon-msg"></my-icon>
+            <my-icon type="icon-msg"></my-icon> {{$t('app.todo')}}
           </span>
         </a-badge>
       </div>
@@ -46,7 +46,7 @@
         </a-dropdown>
       </div>
       <div class="app-header__action--item">
-        <a-radio-group @change="handleLocaleChange" defaultValue="zh_CN">
+        <a-radio-group @change="handleLocaleChange" size="small" defaultValue="zh_CN">
           <a-radio-button value="zh_CN">中文</a-radio-button>
           <a-radio-button value="en_US">English</a-radio-button>
         </a-radio-group>
@@ -76,8 +76,10 @@ export default {
   destroyed() {
   },
   methods: {
-    handleLocaleChange(value) {
-      console.log(value);
+    handleLocaleChange(e) {
+      const locale = e.target.value;
+      this.$i18n.locale = locale;
+      this.$store.commit('setLocale', locale);
     }
   }
 };

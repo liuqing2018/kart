@@ -4,6 +4,21 @@
 export default {
   // 全局公用
   app: {
-    title: '这是一个国际化的测试',
+    title: '卡卡丁车',
+    todo: '待办事项',
+  },
+  common: {
+    queryBtn: '查询',
+    resetBtn: '重置',
+    addBtn: '添加',
+    downloadBtn: '下载',
+    printBtn: '打印',
+    deleteBtn: '删除',
+    saveBtn: '保存',
+    submitBtn: '提交',
+    barUnfold: '展开',
+    barFold: '收起',
+    pageTotal: '共',
+    pageItem: '条',
   }
 }
