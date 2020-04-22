@@ -1,0 +1,20 @@
+{
+  "status": 200,
+  "data": [
+    {
+      "name": "qingliu",
+      "age": 20,
+      "address": "天津"
+    },
+    {
+      "name": "gaoren",
+      "age": 40,
+      "address": "河北"
+    },
+    {
+      "name": "link",
+      "age": 30,
+      "address": "北京"
+    }
+  ]
+}

@@ -3,8 +3,8 @@
  */
 import Vue from 'vue';
 import VueI18n from 'vue-i18n';
-import { LOCALE_KEY } from '../lib/config';
-import { getLocal } from '../lib/utils';
+import { localeKey } from '../config';
+import { getLocal } from '../libs/utils';
 import zh_CN from './zh_CN'; // 中文包
 import en_US from './en_US'; // 英文包
 
@@ -16,7 +16,7 @@ const locales = {
 };
 
 const i18n = new VueI18n({
-  locale: getLocal(LOCALE_KEY),
+  locale: getLocal(localeKey),
   messages: locales
 });
 

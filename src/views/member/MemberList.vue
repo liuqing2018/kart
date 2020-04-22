@@ -36,6 +36,8 @@
 </template>
 
 <script>
+import { memberList, memberInfo } from '@/api/member';
+import { handleError } from '@/libs/utils';
 import QueryFrame from '../../components/frame/QueryFrame.vue';
 import FormItem from '../../components/FormItem.vue';
 import queryMixin from '../../mixin/queryMixin';
@@ -57,86 +59,56 @@ export default {
       // 默认展示表格
       columns: [
         {
-          title: 'Name',
+          title: '门店名称',
+          dataIndex: 'storeName',
+          key: 'storeName',
+          ellipsis: true,
+        },
+        {
+          title: '姓名',
           dataIndex: 'name',
           key: 'name',
           scopedSlots: { customRender: 'name' },
+          width: 120,
         },
         {
-          title: 'Age',
+          title: '会员卡号',
+          dataIndex: 'cardNo',
+          key: 'cardNo',
+          ellipsis: true,
+        },
+        {
+          title: '手机号',
+          dataIndex: 'phone',
+          key: 'phone',
+          ellipsis: true,
+        },
+        {
+          title: '年龄',
           dataIndex: 'age',
           key: 'age',
           width: 80,
         },
         {
-          title: 'Address',
+          title: '地址',
           dataIndex: 'address',
-          key: 'address 1',
+          key: 'address',
           ellipsis: true,
         },
         {
-          title: 'Long Column Long Column Long Column',
-          dataIndex: 'address',
-          key: 'address 2',
+          title: '余额',
+          dataIndex: 'balance',
+          key: 'balance',
           ellipsis: true,
         },
         {
-          title: 'Long Column Long Column',
-          dataIndex: 'address',
-          key: 'address 3',
-          ellipsis: true,
-        },
-        {
-          title: 'Long Column',
-          dataIndex: 'address',
-          key: 'address 4',
+          title: '注册时间',
+          dataIndex: 'createTime',
+          key: 'createTime',
           ellipsis: true,
         },
       ],
-      data: [
-        {
-          key: '1',
-          name: 'John Brown',
-          age: 32,
-          address: 'New York No. 1 Lake Park, New York No. 1 Lake Park',
-          tags: ['nice', 'developer'],
-        },
-        {
-          key: '2',
-          name: 'Jim Green',
-          age: 42,
-          address: 'London No. 2 Lake Park, London No. 2 Lake Park',
-          tags: ['loser'],
-        },
-        {
-          key: '3',
-          name: 'Joe Black',
-          age: 32,
-          address: 'Sidney No. 1 Lake Park, Sidney No. 1 Lake Park',
-          tags: ['cool', 'teacher'],
-        },
-        {
-          key: '4',
-          name: 'John Brown',
-          age: 32,
-          address: 'New York No. 1 Lake Park, New York No. 1 Lake Park',
-          tags: ['nice', 'developer'],
-        },
-        {
-          key: '5',
-          name: 'Jim Green',
-          age: 42,
-          address: 'London No. 2 Lake Park, London No. 2 Lake Park',
-          tags: ['loser'],
-        },
-        {
-          key: '6',
-          name: 'Joe Black',
-          age: 32,
-          address: 'Sidney No. 1 Lake Park, Sidney No. 1 Lake Park',
-          tags: ['cool', 'teacher'],
-        },
-      ]
+      data: []
     };
   },
   computed: {},
@@ -150,11 +122,27 @@ export default {
   },
   methods: {
     getData() {
-      console.log('============ getData ===============');
+      const params = {
+        page: this.page.current,
+        size: this.page.pageSize,
+        name: 'leo',
+        age: 30,
+      };
+
+      memberList(params).then((res) => {
+        this.data = res.data;
+      }).catch((error) => {
+        handleError(error);
+      });
     },
     handleAdd() {
       console.log('添加');
     },
+    handleInfo() {
+      memberInfo().then((res) => {
+        console.log(res);
+      });
+    }
   }
 };
 </script>

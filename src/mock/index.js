@@ -1,0 +1,7 @@
+import Mock from 'mockjs';
+import { memberList } from './member';
+
+const domain = 'http://localhost:8080';
+
+// 定义请求链接，类型，还有返回数据
+Mock.mock(`${domain}/member/list`, 'post', memberList);

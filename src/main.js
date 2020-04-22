@@ -15,6 +15,7 @@ import store from './store';
 import './style/index.less';
 import MyIcon from './components/myIcon';
 import i18n from './locale';
+import './mock/index';
 
 Vue.config.productionTip = false;
 

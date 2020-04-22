@@ -1,18 +1,18 @@
 /**
  * Created by tudou on 2020/4/10 18:11.
  */
-import { getLocal, setLocal } from '../../lib/utils';
-import { DEFAULT_LANG, LOCALE_KEY } from '../../lib/config';
+import { getLocal, setLocal } from '../../libs/utils';
+import { defaultLang, localeKey } from '../../config';
 
 export default {
   namespace: true,
   state: {
     // 多语言支持 zh_CN || en_US
-    locale: DEFAULT_LANG
+    locale: defaultLang
   },
   getters: {
     getLocale(state) {
-      return getLocal(LOCALE_KEY) || state.locale;
+      return getLocal(localeKey) || state.locale;
     },
   },
 
@@ -20,7 +20,7 @@ export default {
   mutations: {
     setLocale(state, payload) {
       state.locale = payload;
-      setLocal(LOCALE_KEY, payload);
+      setLocal(localeKey, payload);
     },
   },
 

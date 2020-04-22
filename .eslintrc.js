@@ -10,6 +10,13 @@ module.exports = {
   parserOptions: {
     parser: 'babel-eslint',
   },
+  // global: {
+  //   arguments: true,
+  // },
+  "globals": {
+    "arguments": true,
+    "var2": "readonly"
+  },
   rules: {
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
@@ -27,6 +34,21 @@ module.exports = {
 
     // 动态导入
     'import/no-dynamic-require': 'off',
+
+    // 赋值给声明为函数参数的变量可
+    'no-param-reassign': 'off',
+
+    // 使用++
+    'no-plusplus': 'off',
+
+    // 箭头函数始终要有return
+    'consistent-return': 'off',
+
+    // 条件表达式
+    'no-unused-expressions': 'off',
+
+    // 返回的内容在一行
+    'arrow-body-style': 'off',
   },
   overrides: [
     {
