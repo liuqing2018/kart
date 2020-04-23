@@ -30,7 +30,7 @@ module.exports = {
     }],
 
     // 单行代码长度
-    'max-len': ['error', 150],
+    'max-len': ['error', 280],
 
     // 动态导入
     'import/no-dynamic-require': 'off',
@@ -49,6 +49,9 @@ module.exports = {
 
     // 返回的内容在一行
     'arrow-body-style': 'off',
+
+    // 可以在代码中的任何地方调用 require
+    'global-require': 'off',
   },
   overrides: [
     {

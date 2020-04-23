@@ -3,7 +3,7 @@
  */
 import axios from 'axios';
 import { message } from 'ant-design-vue';
-import { baseURL } from '@/config';
+import { baseURL, unableCancelList } from '@/config';
 import qs from 'qs';
 
 /*
@@ -42,6 +42,12 @@ const instance = axios.create({
   },
 });
 
+// 取消请求的Handler
+let CancelToken = axios.CancelToken;
+
+// 存放所有请求的cancel方法
+window.cancelMap = {};
+
 // 请求拦截器
 instance.interceptors.request.use((config) => {
   // 默认发送的数据格式是json，此处增加formdata格式
@@ -51,11 +57,30 @@ instance.interceptors.request.use((config) => {
     config.data = qs.stringify(config.data);
   }
 
+
+  // 在请求拦截器中为每一个请求添加cancelToken，并将cancel方法存入cancelMap中保存
+  config.cancelToken = new CancelToken((cancel) => {
+    // 配置cancel的名称，以便取消
+    const cancelKey = config.url;
+
+    // 如果已经请求过了&&不在可以多次请求的名单(unableCancelList)中
+    if (window.cancelMap[cancelKey] && !unableCancelList.includes(cancelKey)) {
+      window.cancelMap[cancelKey]();
+    }
+    window.cancelMap[cancelKey] = cancel; // 最终cancelMap的数据为 '/user/list': f()
+  });
+
   return config;
 }, (error) => Promise.reject(error));
 
 // 响应拦截器
 instance.interceptors.response.use((response) => {
+  // 请求响应后，将cancel方法从cancelMap中移除
+  const cancelKey = response.config.url;
+  if (window.cancelMap[cancelKey]) {
+    delete window.cancelMap[cancelKey];
+  }
+
   // 处理响应数据
   if (response.status && response.status === 200 && response.data) {
     return response.data;

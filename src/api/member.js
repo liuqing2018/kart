@@ -8,9 +8,7 @@ const memberList = (data) => {
 };
 
 const memberInfo = (data) => {
-  return axios.get('/data.json', {
-    params: data,
-  });
+  return axios.get('/data.json', data);
 };
 
 export {

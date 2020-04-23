@@ -114,7 +114,7 @@ export default {
   computed: {},
   watch: {},
   created() {
-    this.handleQuery();
+    // this.handleQuery();
   },
   mounted() {
   },
@@ -128,18 +128,29 @@ export default {
         name: 'leo',
         age: 30,
       };
-
-      memberList(params).then((res) => {
+      // this.handleInfo(params);
+      this.handleList(params);
+    },
+    handleAdd() {
+      console.log('添加');
+      const params = {
+        page: this.page.current,
+        size: this.page.pageSize,
+        name: 'leo',
+        age: 30,
+      };
+      // this.handleInfo(params);
+      this.handleList(params);
+    },
+    handleList(data) {
+      memberList(data).then((res) => {
         this.data = res.data;
       }).catch((error) => {
         handleError(error);
       });
     },
-    handleAdd() {
-      console.log('添加');
-    },
-    handleInfo() {
-      memberInfo().then((res) => {
+    handleInfo(data) {
+      memberInfo(data).then((res) => {
         console.log(res);
       });
     }
