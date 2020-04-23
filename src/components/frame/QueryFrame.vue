@@ -148,17 +148,17 @@ export default {
 
     // 查询
     handleSearch() {
-      this.$emit('query');
+      this.$emit('on-query');
     },
 
     // 重置查询条件
     handleReset() {
-      this.$emit('reset');
+      this.$emit('on-reset');
     },
 
     // 添加
     handleAdd() {
-      this.$emit('add');
+      this.$emit('on-add');
     },
 
     // 用于显示数据总量和当前数据顺序
@@ -168,13 +168,12 @@ export default {
 
     // 页码改变的回调，参数是改变后的页码及每页条数
     handlePageNoChange(pageNo, pageSize) {
-      console.log(pageNo);
-      this.$emit('pageNoChange', pageNo, pageSize);
+      this.$emit('on-page-change', pageNo, pageSize);
     },
 
     // pageSize 变化的回调
     handlePageSizeChange(current, pageSize) {
-      this.$emit('pageSizeChange', current, pageSize);
+      this.$emit('on-size-change', current, pageSize);
     },
 
   }

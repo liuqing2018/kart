@@ -6,11 +6,11 @@
     <query-frame
       :current="page.current"
       :total="page.total"
-      @query="handleQuery"
-      @reset="handleReset"
-      @add="handleAdd"
-      @pageNoChange="handlePageNoChange"
-      @pageSizeChange="handlePageSizeChange"
+      @on-query="handleQuery"
+      @on-reset="handleReset"
+      @on-add="handleAdd"
+      @on-page-change="handlePageChange"
+      @on-size-change="handleSizeChange"
     >
       <template slot="query">
         <form-item label="用户名">

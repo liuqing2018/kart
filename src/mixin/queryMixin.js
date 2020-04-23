@@ -16,20 +16,20 @@ export default {
   methods: {
     // 点击查询按钮查询数据
     handleQuery(callback) {
-      this.params = Object.assign({}, this.query); // 复制检索模型副本 避免切换分页数后数据变动
+      this.params = { ...this.query }; // 复制检索模型副本 避免切换分页数后数据变动
       this.page.current = 1; // 重置页码到第一页
       this.getData(); // 获取分页数据
       callback && callback(); // 查询是同时执行的方法
     },
 
     // 切换页面
-    handlePageNoChange(pageNo, pageSize, isTransform = true) {  // isTransform用于标识getData内查询参数是否已经转换过, 切换分页的时候不在转换数据
+    handlePageChange(pageNo, pageSize, isTransform = true) { // isTransform用于标识getData内查询参数是否已经转换过, 切换分页的时候不在转换数据
       this.page.current = pageNo;
       this.getData(isTransform);
     },
 
     // 切换每页显示的条数
-    handlePageSizeChange(current, pageSize, isTransform = true) {
+    handleSizeChange(current, pageSize, isTransform = true) {
       this.page.pageSize = pageSize;
       this.page.current = 1;
       this.getData(isTransform);
