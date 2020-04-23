@@ -10,6 +10,7 @@ export default {
   common: {
     queryBtn: 'Search',
     resetBtn: 'Reset',
+    loading: 'Loading...',
     addBtn: 'Add',
     downloadBtn: 'Download',
     printBtn: 'Print',

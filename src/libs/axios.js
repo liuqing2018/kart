@@ -2,6 +2,7 @@
  * Created by tudou on 2020/4/21 22:00.
  */
 import axios from 'axios';
+import store from '../store/index';
 import { message } from 'ant-design-vue';
 import { baseURL, unableCancelList } from '@/config';
 import qs from 'qs';
@@ -57,6 +58,8 @@ instance.interceptors.request.use((config) => {
     config.data = qs.stringify(config.data);
   }
 
+  // 全局loading状态
+  store.commit('setLoading', true);
 
   // 在请求拦截器中为每一个请求添加cancelToken，并将cancel方法存入cancelMap中保存
   config.cancelToken = new CancelToken((cancel) => {
@@ -71,7 +74,10 @@ instance.interceptors.request.use((config) => {
   });
 
   return config;
-}, (error) => Promise.reject(error));
+}, (error) => {
+  store.commit('setLoading', false);
+  return Promise.reject(error);
+});
 
 // 响应拦截器
 instance.interceptors.response.use((response) => {
@@ -80,6 +86,9 @@ instance.interceptors.response.use((response) => {
   if (window.cancelMap[cancelKey]) {
     delete window.cancelMap[cancelKey];
   }
+
+  // 请求结束将全局loading状态设置为false
+  store.commit('setLoading', false);
 
   // 处理响应数据
   if (response.status && response.status === 200 && response.data) {
@@ -100,6 +109,8 @@ instance.interceptors.response.use((response) => {
   }
   return response;
 }, (error) => {
+  store.commit('setLoading', false);
+
   // 取消请求
   if (axios.isCancel(error)) {
     return new Promise(() => {});

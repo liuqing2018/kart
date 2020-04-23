@@ -8,7 +8,10 @@ export default {
   namespace: true,
   state: {
     // 多语言支持 zh_CN || en_US
-    locale: defaultLang
+    locale: defaultLang,
+
+    // 加载状态
+    loading: false,
   },
   getters: {
     getLocale(state) {
@@ -18,9 +21,15 @@ export default {
 
   // 同步更改state的方法
   mutations: {
+    // 切换多语言
     setLocale(state, payload) {
       state.locale = payload;
       setLocal(localeKey, payload);
+    },
+
+    // 设置全局loading状态
+    setLoading(state, status) {
+      state.loading = status;
     },
   },
 

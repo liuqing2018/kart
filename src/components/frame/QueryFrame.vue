@@ -17,7 +17,7 @@
           <!-- 自定义条件 结束 -->
 
           <a-form-model-item class="query-item">
-            <a-button class="mr-10" type="primary" html-type="submit" icon="search" @click.stop="handleSearch">{{$t('common.queryBtn')}}</a-button>
+            <a-button class="mr-10" type="primary" html-type="submit" icon="search" @click.stop="handleSearch" :loading="loading">{{$t('common.queryBtn')}}</a-button>
             <a-button html-type="reset" icon="rollback" @click.stop="handleReset">{{$t('common.resetBtn')}}</a-button>
           </a-form-model-item>
         </div>
@@ -32,43 +32,45 @@
 
     <!-- 查询结果 开始 -->
     <div :class="{'query__main': true, 'is--bar-visiable': barVisiable}">
-      <!-- 支持 默认的新增-->
-      <div class="query__options">
-        <a-button class="mr-10" type="primary" icon="plus" v-if="addVisiable" :disabled="addDisable" @click="handleAdd">{{addBtnTxt}}</a-button>
-        <!--<a-button class="mr-10" type="primary" icon="plus">下载download</a-button>-->
-        <!--<a-button class="mr-10" type="primary" icon="plus">打印print</a-button>-->
-        <!--<a-button class="mr-10" type="primary" icon="plus">删除delete</a-button>-->
-        <slot name="btns"></slot>
-      </div>
-
-      <!--<div class="query__summary">-->
-        <!--<slot name="summary"></slot>-->
-        <!--<div class="query__summary__title">合计</div>-->
-        <!--<div class="query__summary__group">-->
-          <!--<div class="query__summary&#45;&#45;label">含税总金额：</div>-->
-          <!--<div class="query__summary&#45;&#45;value">{{234}}</div>-->
-        <!--</div>-->
-        <!--<div class="query__summary__group">-->
-          <!--<div class="query__summary&#45;&#45;label">含税总金额：</div>-->
-          <!--<div class="query__summary&#45;&#45;value">{{234}}</div>-->
-        <!--</div>-->
-      <!--</div>-->
-      <div class="query__result">
-        <slot name="table"></slot>
-        <div class="query__page" v-if="pageVisiable">
-          <a-pagination
-            showQuickJumper
-            showSizeChanger
-            :current="current"
-            :page-size="pageSize"
-            :show-total="showTotal"
-            :page-size-options="['10', '20', '30', '40', '50', '100']"
-            :total="total"
-            @showSizeChange="handlePageSizeChange"
-            @change="handlePageNoChange">
-          </a-pagination>
+      <a-spin :spinning="loading" :tip="$t('common.loading')">
+        <!-- 支持 默认的新增-->
+        <div class="query__options">
+          <a-button class="mr-10" type="primary" icon="plus" v-if="addVisiable" :disabled="addDisable" @click="handleAdd">{{addBtnTxt}}</a-button>
+          <!--<a-button class="mr-10" type="primary" icon="plus">下载download</a-button>-->
+          <!--<a-button class="mr-10" type="primary" icon="plus">打印print</a-button>-->
+          <!--<a-button class="mr-10" type="primary" icon="plus">删除delete</a-button>-->
+          <slot name="btns"></slot>
         </div>
-      </div>
+
+        <!--<div class="query__summary">-->
+          <!--<slot name="summary"></slot>-->
+          <!--<div class="query__summary__title">合计</div>-->
+          <!--<div class="query__summary__group">-->
+            <!--<div class="query__summary&#45;&#45;label">含税总金额：</div>-->
+            <!--<div class="query__summary&#45;&#45;value">{{234}}</div>-->
+          <!--</div>-->
+          <!--<div class="query__summary__group">-->
+            <!--<div class="query__summary&#45;&#45;label">含税总金额：</div>-->
+            <!--<div class="query__summary&#45;&#45;value">{{234}}</div>-->
+          <!--</div>-->
+        <!--</div>-->
+        <div class="query__result">
+          <slot name="table"></slot>
+          <div class="query__page" v-if="pageVisiable">
+            <a-pagination
+              showQuickJumper
+              showSizeChanger
+              :current="current"
+              :page-size="pageSize"
+              :show-total="showTotal"
+              :page-size-options="['10', '20', '30', '40', '50', '100']"
+              :total="total"
+              @showSizeChange="handlePageSizeChange"
+              @change="handlePageNoChange">
+            </a-pagination>
+          </div>
+        </div>
+      </a-spin>
     </div>
     <!-- 查询结果 结束 -->
   </div>
@@ -79,6 +81,10 @@ export default {
   name: 'QueryFrame',
   components: {},
   props: {
+    // loading: { // 页面是否正在加载中
+    //   type: Boolean,
+    //   default: false,
+    // },
     addText: { // 添加按钮的文字
       type: [String, Boolean, Number],
     },
@@ -111,6 +117,9 @@ export default {
     };
   },
   computed: {
+    loading() {
+      return this.$store.state.app.loading;
+    },
     addBtnTxt() {
       return this.addText || this.$t('common.addBtn');
     }
