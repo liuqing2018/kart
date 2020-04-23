@@ -8,7 +8,8 @@ const defaultLang = 'zh_CN';
 const localeKey = 'locale';
 
 // 接口请求地址
-const devURL = 'http://localhost:8080';
+// const devURL = 'http://localhost:8080';
+const devURL = 'api';
 const proURL = '/';
 const baseURL = process.env.NODE_ENV === 'development' ? devURL : proURL;
 

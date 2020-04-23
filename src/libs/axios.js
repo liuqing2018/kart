@@ -100,7 +100,11 @@ instance.interceptors.response.use((response) => {
   }
   return response;
 }, (error) => {
-  // 处理响应错误
+  // 取消请求
+  if (axios.isCancel(error)) {
+    return new Promise(() => {});
+  }
+
   return Promise.reject(error);
 });
 
