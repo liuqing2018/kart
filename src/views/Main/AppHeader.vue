@@ -12,7 +12,7 @@
       <div class="app-header__action--item">
         <a-badge :count="0">
           <span class="action__notice">
-            <my-icon type="icon-msg"></my-icon> {{$t('app.todo')}}
+            <i-icon type="icon-msg"></i-icon> {{$t('app.todo')}}
           </span>
         </a-badge>
       </div>
@@ -23,22 +23,22 @@
               size="small"
               shape="circle"
               src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1586670136069&di=00a3b144f4007762a955d226c178b4d5&imgtype=0&src=http%3A%2F%2F5b0988e595225.cdn.sohucs.com%2Fimages%2F20200228%2F1585b57537874b7eb4e06649cd1ff9cf.jpeg" />
-            高人 <my-icon type="icon-menu-down"></my-icon>
+            高人 <i-icon type="icon-menu-down"></i-icon>
           </a>
           <a-menu slot="overlay">
             <a-menu-item-group key="g1">
               <a-menu-item key="1">
-                <my-icon class="mr-10" type="icon-user"></my-icon>
+                <i-icon class="mr-10" type="icon-user"></i-icon>
                 <span>我的资料</span>
               </a-menu-item>
               <a-menu-item key="2">
-                <my-icon class="mr-10" type="icon-pwd"></my-icon>
+                <i-icon class="mr-10" type="icon-pwd"></i-icon>
                 <span>修改密码</span>
               </a-menu-item>
             </a-menu-item-group>
             <a-menu-item-group key="g2">
               <a-menu-item>
-              <my-icon class="mr-10" type="icon-exit"></my-icon>
+              <i-icon class="mr-10" type="icon-exit"></i-icon>
               <span>退出登录</span>
               </a-menu-item>
             </a-menu-item-group>

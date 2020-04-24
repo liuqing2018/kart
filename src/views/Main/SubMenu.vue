@@ -6,7 +6,7 @@
     :key="props.menuData.url"
   >
     <span slot="title">
-      <my-icon :type="props.menuData.icon"></my-icon>
+      <i-icon :type="props.menuData.icon"></i-icon>
       <span>{{props.menuData.title}}</span>
     </span>
     <template v-for="menu in props.menuData.children">
@@ -16,7 +16,7 @@
         :menu-data="menu">
       </sub-menu>
       <a-menu-item v-else :key="menu.url">
-        <my-icon :type="menu.icon"></my-icon>
+        <i-icon :type="menu.icon"></i-icon>
         <span>{{ menu.title }}</span>
       </a-menu-item>
     </template>

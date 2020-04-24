@@ -71,6 +71,100 @@ const data = [
     title: '系统设置',
     url: '/system',
     icon: 'icon-setting',
+    children: [
+
+      {
+        key: '6-1',
+        title: '消费流水',
+        url: '/home5',
+        icon: 'icon-setting',
+        children: []
+      },
+      {
+        key: '6-2',
+        title: '退款流水',
+        url: '/home6',
+        icon: 'icon-setting',
+        children: []
+      },
+      {
+        key: '6-3',
+        title: '充值流水',
+        url: '/home7',
+        icon: 'icon-setting',
+        children: []
+      },
+      {
+        key: '6-4',
+        title: '比赛流水',
+        url: '/home8',
+        icon: 'icon-setting',
+        children: []
+      }
+    ]
+  },
+  {
+    key: '7',
+    title: '系统设置',
+    url: '/system',
+    icon: 'icon-setting',
+    children: [
+      {
+        key: '76-1',
+        title: '消费流水',
+        url: '/home5',
+        icon: 'icon-setting',
+        children: []
+      },
+      {
+        key: '76-2',
+        title: '退款流水',
+        url: '/home6',
+        icon: 'icon-setting',
+        children: []
+      },
+      {
+        key: '76-3',
+        title: '充值流水',
+        url: '/home7',
+        icon: 'icon-setting',
+        children: []
+      },
+      {
+        key: '76-4',
+        title: '比赛流水',
+        url: '/home8',
+        icon: 'icon-setting',
+        children: []
+      }
+    ]
+  },
+  {
+    key: '8',
+    title: '系统设置',
+    url: '/system',
+    icon: 'icon-setting',
+    children: []
+  },
+  {
+    key: '9',
+    title: '系统设置',
+    url: '/system',
+    icon: 'icon-setting',
+    children: []
+  },
+  {
+    key: '10',
+    title: '系统设置',
+    url: '/system',
+    icon: 'icon-setting',
+    children: []
+  },
+  {
+    key: '11',
+    title: '系统设置',
+    url: '/system',
+    icon: 'icon-setting',
     children: []
   }
 ];
