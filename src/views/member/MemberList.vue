@@ -132,15 +132,9 @@ export default {
       this.handleList(params);
     },
     handleAdd() {
-      console.log('添加');
-      const params = {
-        page: this.page.current,
-        size: this.page.pageSize,
-        name: 'leo',
-        age: 30,
-      };
-      // this.handleInfo(params);
-      this.handleList(params);
+      this.$router.push({
+        name: 'memberAdd'
+      });
     },
     handleList(data) {
       memberList(data).then((res) => {
@@ -159,7 +153,5 @@ export default {
 </script>
 
 <style lang="less" scoped>
-  .base-content {
-    height: 100%;
-  }
+
 </style>

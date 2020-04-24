@@ -86,12 +86,15 @@ export default {
 </script>
 
 <style lang="less" scoped>
+@import "../../style/modules/variables";
+
 .app-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0 16px;
   background-color: #fff;
+  border-bottom: 1px solid @border-color-secondary;
 
   .app-header__message {
     flex: 1 1 auto;

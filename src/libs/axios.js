@@ -2,10 +2,10 @@
  * Created by tudou on 2020/4/21 22:00.
  */
 import axios from 'axios';
-import store from '../store/index';
 import { message } from 'ant-design-vue';
 import { baseURL } from '@/config';
 import qs from 'qs';
+import store from '../store/index';
 
 // 可以多次请求的方法列表（默认请求A在没有完成之前，不可以再次发起A请求）
 const unableCancelList = [];

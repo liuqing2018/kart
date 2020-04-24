@@ -189,6 +189,8 @@ export default {
 };
 </script>
 
+
+
 <style lang="less" scoped>
   @import "../../style/modules/variables";
 
@@ -201,9 +203,9 @@ export default {
 
   .query__header {
     position: relative;
-    border: 1px solid rgb(235, 237, 240);
-    background-color: #fff;
     padding: 20px 16px 5px;
+    background-color: #fff;
+    border-bottom: 1px solid @border-color-secondary;
   }
 
   .query__condition{

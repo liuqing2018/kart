@@ -10,7 +10,7 @@ export default {
   common: {
     queryBtn: '查询',
     resetBtn: '重置',
-    loading: '拼命加载中...',
+    loading: '拼命处理中...',
     addBtn: '添加',
     downloadBtn: '下载',
     printBtn: '打印',

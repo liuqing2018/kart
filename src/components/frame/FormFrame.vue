@@ -11,10 +11,43 @@
           subTitle="会员详情"
         >
           <template slot="extra">
-            <a-button v-if="logVisiable" :disabled="logDisable" @click="handleLog">{{logBtnTxt}}</a-button>
-            <a-button v-if="resetVisiable" :disabled="resetDisable" @click="handleReset">{{resetBtnTxt}}</a-button>
-            <a-button type="danger" icon="plus" v-if="saveVisiable" :disabled="saveDisable" @click="handleSave">{{saveBtnTxt}}</a-button>
-            <a-button class="mr-10" type="primary" icon="plus" v-if="submitVisiable" :disabled="submitDisable" @click="handleSubmit">{{submitBtnTxt}}</a-button>
+            <!-- 操作日志按钮 开始 -->
+            <a-button
+              v-if="logVisiable"
+              :disabled="logDisable || loading"
+              :loading="loading && loadingIndex === 1"
+              @click="handleLog(1)">{{logBtnTxt}}
+            </a-button>
+            <!-- 操作日志按钮 结束 -->
+
+            <!-- 重置按钮 开始 -->
+            <a-button
+              v-if="resetVisiable"
+              :disabled="resetDisable || loading"
+              :loading="loading && loadingIndex === 2"
+              @click="handleReset(2)">{{resetBtnTxt}}
+            </a-button>
+            <!-- 重置按钮 结束 -->
+
+            <!-- 保存按钮 开始 -->
+            <a-button
+              type="danger"
+              v-if="saveVisiable"
+              :disabled="saveDisable || (loading && loadingIndex !== 3)"
+              :loading="loading && loadingIndex === 3"
+              @click="handleSave(3)" >{{saveBtnTxt}}
+            </a-button>
+            <!-- 保存按钮 结束 -->
+
+            <!-- 提交按钮 开始 -->
+            <a-button
+              type="primary"
+              v-if="submitVisiable"
+              :disabled="submitDisable || (loading && loadingIndex !== 4)"
+              :loading="loading && loadingIndex === 4"
+              @click="handleSubmit(4)" >{{submitBtnTxt}}
+            </a-button>
+            <!-- 提交按钮 结束 -->
             <slot name="btns"></slot>
           </template>
           <slot name="info">
@@ -26,8 +59,10 @@
       </a-affix>
     </div>
     <div class="form-frame__content">
-      <slot name="content">
-      </slot>
+      <a-spin :spinning="loading" :tip="$t('common.loading')">
+        <slot name="content">
+        </slot>
+      </a-spin>
     </div>
   </div>
 </template>
@@ -90,6 +125,7 @@ export default {
   },
   data() {
     return {
+      loadingIndex: 0, // 当前点击的是哪个按钮，只针对当前按钮loading
     };
   },
   computed: {
@@ -104,6 +140,9 @@ export default {
     },
     submitBtnTxt() {
       return this.submitText || this.$t('common.submitBtn');
+    },
+    loading() {
+      return this.$store.state.app.loading;
     },
   },
   watch: {},
@@ -120,22 +159,26 @@ export default {
     },
 
     // 操作日志
-    handleLog() {
+    handleLog(index) {
+      this.loadingIndex = index;
       this.$emit('on-log');
     },
 
     // 重置操作
-    handleReset() {
+    handleReset(index) {
+      this.loadingIndex = index;
       this.$emit('on-reset');
     },
 
     // 保存操作
-    handleSave() {
+    handleSave(index) {
+      this.loadingIndex = index;
       this.$emit('on-save');
     },
 
     // 提交操作
-    handleSubmit() {
+    handleSubmit(index) {
+      this.loadingIndex = index;
       this.$emit('on-submit');
     },
   }
@@ -143,16 +186,20 @@ export default {
 </script>
 
 <style lang="less" scoped>
+@import "../../style/modules/variables";
+
 .form-frame {
   display: flex;
   flex-flow: column nowrap;
   height: 100%;
   overflow-y: auto;
 }
+.form-frame__header {
+}
 .form-frame__content {
   flex: 1 1 auto;
   margin: 16px;
   /*padding: 16px;*/
-  /*background: #ffffff;*/
+  background-color: @body-background;
 }
 </style>

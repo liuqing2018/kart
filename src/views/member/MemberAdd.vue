@@ -2,8 +2,8 @@
 * Created by tudou on 2020/4/20 21:32.
 */
 <template>
-  <div style="border: 2px solid blue; height: 100%; overflow: auto">
-    <form-frame>
+  <div class="base-content">
+    <form-frame @on-save="handleSave" @on-submit="handleSubmit">
       <div slot="content">
         <a-card title="新建会员">
           <a-form-model :model="form" :label-col="labelCol" :wrapper-col="wrapperCol">
@@ -68,6 +68,69 @@
             <!--</a-form-model-item>-->
           </a-form-model>
         </a-card>
+        <!--<a-card title="新建会员" style="margin-top: 20px; border: 1px solid blue">-->
+          <!--<a-form-model :model="form" :label-col="labelCol" :wrapper-col="wrapperCol">-->
+            <!--<a-form-model-item label="Activity name">-->
+              <!--<a-input v-model="form.name" />-->
+            <!--</a-form-model-item>-->
+            <!--<a-form-model-item label="Activity zone">-->
+              <!--<a-select v-model="form.region" placeholder="please select your zone">-->
+                <!--<a-select-option value="shanghai">-->
+                  <!--Zone one-->
+                <!--</a-select-option>-->
+                <!--<a-select-option value="beijing">-->
+                  <!--Zone two-->
+                <!--</a-select-option>-->
+              <!--</a-select>-->
+            <!--</a-form-model-item>-->
+            <!--<a-form-model-item label="Activity time">-->
+              <!--<a-date-picker-->
+                <!--v-model="form.date1"-->
+                <!--show-time-->
+                <!--type="date"-->
+                <!--placeholder="Pick a date"-->
+                <!--style="width: 100%;"-->
+              <!--/>-->
+            <!--</a-form-model-item>-->
+            <!--<a-form-model-item label="Instant delivery">-->
+              <!--<a-switch v-model="form.delivery" />-->
+            <!--</a-form-model-item>-->
+            <!--<a-form-model-item label="Activity type">-->
+              <!--<a-checkbox-group v-model="form.type">-->
+                <!--<a-checkbox value="1" name="type">-->
+                  <!--Online-->
+                <!--</a-checkbox>-->
+                <!--<a-checkbox value="2" name="type">-->
+                  <!--Promotion-->
+                <!--</a-checkbox>-->
+                <!--<a-checkbox value="3" name="type">-->
+                  <!--Offline-->
+                <!--</a-checkbox>-->
+              <!--</a-checkbox-group>-->
+            <!--</a-form-model-item>-->
+            <!--<a-form-model-item label="Resources">-->
+              <!--<a-radio-group v-model="form.resource">-->
+                <!--<a-radio value="1">-->
+                  <!--Sponsor-->
+                <!--</a-radio>-->
+                <!--<a-radio value="2">-->
+                  <!--Venue-->
+                <!--</a-radio>-->
+              <!--</a-radio-group>-->
+            <!--</a-form-model-item>-->
+            <!--<a-form-model-item label="Activity form">-->
+              <!--<a-input v-model="form.desc" type="textarea" />-->
+            <!--</a-form-model-item>-->
+            <!--&lt;!&ndash;<a-form-model-item :wrapper-col="{ span: 14, offset: 4 }">&ndash;&gt;-->
+            <!--&lt;!&ndash;<a-button type="primary" @click="onSubmit">&ndash;&gt;-->
+            <!--&lt;!&ndash;Create&ndash;&gt;-->
+            <!--&lt;!&ndash;</a-button>&ndash;&gt;-->
+            <!--&lt;!&ndash;<a-button style="margin-left: 10px;">&ndash;&gt;-->
+            <!--&lt;!&ndash;Cancel&ndash;&gt;-->
+            <!--&lt;!&ndash;</a-button>&ndash;&gt;-->
+            <!--&lt;!&ndash;</a-form-model-item>&ndash;&gt;-->
+          <!--</a-form-model>-->
+        <!--</a-card>-->
       </div>
     </form-frame>
   </div>
@@ -75,6 +138,7 @@
 
 <script>
 import FormFrame from '../../components/frame/FormFrame.vue';
+import { memberList } from "@/api/member";
 
 export default {
   name: 'MemberAdd',
@@ -105,7 +169,24 @@ export default {
   },
   destroyed() {
   },
-  methods: {}
+  methods: {
+    handleSave() {
+      console.log('======== add handleSave =========');
+      memberList().then((res) => {
+        console.log(res);
+      }).catch((error) => {
+        console.log(error);
+      });
+    },
+    handleSubmit() {
+      console.log('======== add handleSubmit =========');
+      memberList().then((res) => {
+        console.log(res);
+      }).catch((error) => {
+        console.log(error);
+      });
+    }
+  }
 };
 </script>
 
