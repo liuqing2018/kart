@@ -4,8 +4,14 @@
 import axios from 'axios';
 import store from '../store/index';
 import { message } from 'ant-design-vue';
-import { baseURL, unableCancelList } from '@/config';
+import { baseURL } from '@/config';
 import qs from 'qs';
+
+// 可以多次请求的方法列表（默认请求A在没有完成之前，不可以再次发起A请求）
+const unableCancelList = [];
+
+// 不产生全局loading的列表
+const disableLoadingList = [];
 
 /*
 * 使用formData()可以通过payload提交表单数据:multipart/form-data
@@ -58,24 +64,29 @@ instance.interceptors.request.use((config) => {
     config.data = qs.stringify(config.data);
   }
 
-  // 全局loading状态
-  store.commit('setLoading', true);
+  // 请求路径
+  const requestUrl = config.url;
+
+  // 请求路径不在禁用列表（disableLoadingList）&&当前没有设置disableLoading
+  if (!disableLoadingList.includes(requestUrl) && !store.state.app.disableLoading) {
+    store.commit('setLoading', true);
+  }
 
   // 在请求拦截器中为每一个请求添加cancelToken，并将cancel方法存入cancelMap中保存
   config.cancelToken = new CancelToken((cancel) => {
-    // 配置cancel的名称，以便取消
-    const cancelKey = config.url;
-
     // 如果已经请求过了&&不在可以多次请求的名单(unableCancelList)中
-    if (window.cancelMap[cancelKey] && !unableCancelList.includes(cancelKey)) {
-      window.cancelMap[cancelKey]();
+    if (window.cancelMap[requestUrl] && !unableCancelList.includes(requestUrl)) {
+      // 通过requestUrl取消对应的请求
+      window.cancelMap[requestUrl]();
     }
-    window.cancelMap[cancelKey] = cancel; // 最终cancelMap的数据为 '/user/list': f()
+    window.cancelMap[requestUrl] = cancel; // 最终cancelMap的数据为 '/user/list': f()
   });
 
   return config;
 }, (error) => {
+  // 捕获错误，结束loading状态
   store.commit('setLoading', false);
+  store.commit('setDisableLoading', false);
   return Promise.reject(error);
 });
 
@@ -89,6 +100,7 @@ instance.interceptors.response.use((response) => {
 
   // 请求结束将全局loading状态设置为false
   store.commit('setLoading', false);
+  store.commit('setDisableLoading', false);
 
   // 处理响应数据
   if (response.status && response.status === 200 && response.data) {

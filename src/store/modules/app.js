@@ -10,8 +10,11 @@ export default {
     // 多语言支持 zh_CN || en_US
     locale: defaultLang,
 
-    // 加载状态
+    // 全局加载状态
     loading: false,
+
+    // 是否禁用全局加载状态
+    disableLoading: false,
   },
   getters: {
     getLocale(state) {
@@ -30,6 +33,11 @@ export default {
     // 设置全局loading状态
     setLoading(state, status) {
       state.loading = status;
+    },
+
+    // 设置是否禁用全局loading状态
+    setDisableLoading(state, status) {
+      state.disableLoading = status;
     },
   },
 
