@@ -52,6 +52,9 @@ module.exports = {
 
     // 可以在代码中的任何地方调用 require
     'global-require': 'off',
+
+    // 换行风格
+    'linebreak-style': ['off', 'error', 'windows'],
   },
   overrides: [
     {
