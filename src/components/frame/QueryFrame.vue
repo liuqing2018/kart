@@ -18,7 +18,7 @@
 
           <a-form-model-item class="query-item">
             <a-button class="mr-10" type="primary" html-type="submit" icon="search" @click.stop="handleSearch" :loading="loading">{{$t('common.queryBtn')}}</a-button>
-            <a-button html-type="reset" icon="rollback" @click.stop="handleReset">{{$t('common.resetBtn')}}</a-button>
+            <a-button html-type="reset" icon="redo" @click.stop="handleReset">{{$t('common.resetBtn')}}</a-button>
           </a-form-model-item>
         </div>
       </a-form-model>
@@ -36,9 +36,9 @@
         <!-- 支持 默认的新增-->
         <div class="query__options">
           <a-button class="mr-10" type="primary" icon="plus" v-if="addVisiable" :disabled="addDisable" @click="handleAdd">{{addBtnTxt}}</a-button>
-          <!--<a-button class="mr-10" type="primary" icon="plus">下载download</a-button>-->
-          <!--<a-button class="mr-10" type="primary" icon="plus">打印print</a-button>-->
-          <!--<a-button class="mr-10" type="primary" icon="plus">删除delete</a-button>-->
+          <!--<a-button class="mr-10" type="primary" icon="download">下载</a-button>-->
+          <!--<a-button class="mr-10" type="primary" icon="printer">打印</a-button>-->
+          <!--<a-button class="mr-10" type="primary" icon="delete">删除</a-button>-->
           <slot name="btns"></slot>
         </div>
 

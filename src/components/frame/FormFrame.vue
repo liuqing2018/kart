@@ -13,6 +13,7 @@
           <template slot="extra">
             <!-- 操作日志按钮 开始 -->
             <a-button
+              icon="profile"
               v-if="logVisiable"
               :disabled="logDisable || loading"
               :loading="loading && loadingIndex === 1"
@@ -22,6 +23,7 @@
 
             <!-- 重置按钮 开始 -->
             <a-button
+              icon="redo"
               v-if="resetVisiable"
               :disabled="resetDisable || loading"
               :loading="loading && loadingIndex === 2"
@@ -31,6 +33,7 @@
 
             <!-- 保存按钮 开始 -->
             <a-button
+              icon="save"
               type="danger"
               v-if="saveVisiable"
               :disabled="saveDisable || (loading && loadingIndex !== 3)"
@@ -41,6 +44,7 @@
 
             <!-- 提交按钮 开始 -->
             <a-button
+              icon="check"
               type="primary"
               v-if="submitVisiable"
               :disabled="submitDisable || (loading && loadingIndex !== 4)"

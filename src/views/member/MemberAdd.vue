@@ -137,8 +137,8 @@
 </template>
 
 <script>
-import FormFrame from '../../components/frame/FormFrame.vue';
-import { memberList } from "@/api/member";
+import { memberList } from '@api/member';
+import FormFrame from '@components/frame/FormFrame.vue';
 
 export default {
   name: 'MemberAdd',
