@@ -13,6 +13,8 @@
           <template slot="extra">
             <!-- 操作日志按钮 开始 -->
             <a-button
+              ghost
+              type="primary"
               icon="profile"
               v-if="logVisiable"
               :disabled="logDisable || loading"
@@ -34,7 +36,7 @@
             <!-- 保存按钮 开始 -->
             <a-button
               icon="save"
-              type="danger"
+              type="primary"
               v-if="saveVisiable"
               :disabled="saveDisable || (loading && loadingIndex !== 3)"
               :loading="loading && loadingIndex === 3"
