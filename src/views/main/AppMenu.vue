@@ -15,7 +15,7 @@
         :key="item.url">
       </sub-menu>
       <a-menu-item v-else :key="item.url">
-        <my-icon :type="item.icon"></my-icon>
+        <i-icon :type="item.icon"></i-icon>
         <span>{{ item.title }}</span>
       </a-menu-item>
     </template>

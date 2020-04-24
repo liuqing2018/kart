@@ -15,8 +15,8 @@
 
     <div>
       <Divider orientation="left">IconFont</Divider>
-      <my-icon type="el-icon-m-user" :spin="true" class="icon"></my-icon>
-      <my-icon type="el-icon-m-pwd" :spin="true" class="icon"></my-icon>
+      <i-icon type="el-icon-m-user" :spin="true" class="icon"></i-icon>
+      <i-icon type="el-icon-m-pwd" :spin="true" class="icon"></i-icon>
     </div>
     <div>
       <divider orientation="left">TimePicker</divider>

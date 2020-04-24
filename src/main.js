@@ -13,7 +13,7 @@ import './registerServiceWorker';
 import router from './router';
 import store from './store';
 import './style/index.less';
-import MyIcon from './components/myIcon';
+import IIcon from './components/IIcon';
 import i18n from './locale';
 // import './mock/index';
 
@@ -24,7 +24,7 @@ Vue.config.productionTip = false;
 // Vue.component(InputNumber.name, InputNumber);
 // Vue.component(Icon.name, Icon);
 Vue.use(Antd);
-Vue.component('MyIcon', MyIcon);
+Vue.component('IIcon', IIcon);
 
 new Vue({
   router,

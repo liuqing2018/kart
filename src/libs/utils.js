@@ -155,6 +155,23 @@ const toFixed = (num, precision = 6, fraction = 2) => {
   return numStr.substring(0, endIndex);
 };
 
+/**
+ * 节流函数，通过控制每次事件执行的时间间隔控制短时间多次执行方法
+ * @param handler 要执行的方法
+ * @param wait 每次点击事件执行的时间间隔(毫秒
+ * @returns {Function}
+ */
+const throttle = (handler, wait = 500) => {
+  let lastTime = 0;
+  return function () {
+    const nowTime = Date.now();
+    if (nowTime - lastTime > wait) {
+      handler.apply(this, arguments);
+      lastTime = nowTime;
+    }
+  };
+};
+
 export {
   getLocal,
   setLocal,
@@ -162,4 +179,5 @@ export {
   handleError,
   timeChunk,
   toFixed,
+  throttle,
 };

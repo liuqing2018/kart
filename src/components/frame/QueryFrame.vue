@@ -25,7 +25,7 @@
       <div class="query-bar" v-if="barVisiable" @click="handleBarToggle()">
         <span
           :class="{'primary-color': isBarOpen, '': !isBarOpen}">{{isBarOpen ? $t('common.barFold') : $t('common.barUnfold')}}
-          <my-icon :type="isBarOpen ? 'icon-menu-up' : 'icon-menu-down'"></my-icon></span>
+          <i-icon :type="isBarOpen ? 'icon-menu-up' : 'icon-menu-down'"></i-icon></span>
       </div>
     </div>
     <!-- 查询条件 结束 -->

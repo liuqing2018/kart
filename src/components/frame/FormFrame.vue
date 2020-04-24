@@ -155,7 +155,7 @@ export default {
   methods: {
     // 返回上级列表
     handleToList() {
-      this.$router.go(-1); // todo 需要解决连击问题 2.iconfont替换原有内容
+      this.$router.go(-1);
     },
 
     // 操作日志

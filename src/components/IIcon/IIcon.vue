@@ -3,7 +3,7 @@
 */
 <template>
   <BaseIcon
-    class="my-icon"
+    class="i-icon"
     :type="type"
     :style="myStyle"
     :theme="theme"
@@ -20,7 +20,7 @@
 import BaseIcon from './BaseIcon';
 
 export default {
-  name: 'MyIcon',
+  name: 'IIcon',
   components: {
     BaseIcon
   },
@@ -54,7 +54,7 @@ export default {
 
 <style lang="less" scoped>
 @import "../../style/modules/variables";
-.my-icon {
+.i-icon {
   cursor: pointer;
   transition: color 0.3s;
 
