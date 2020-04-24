@@ -172,6 +172,14 @@ const throttle = (handler, wait = 500) => {
   };
 };
 
+// 转换为时间戳
+const toTimestamp = (time) => new Date(time).getTime() || '';
+
+// day.js 转换日期
+
+// 获取对象类型
+const getType = obj => ({}).toString.call(obj).match(/\s([a-zA-Z]+)/)[1].toLowerCase();
+
 export {
   getLocal,
   setLocal,
@@ -180,4 +188,6 @@ export {
   timeChunk,
   toFixed,
   throttle,
+  toTimestamp,
+  getType,
 };

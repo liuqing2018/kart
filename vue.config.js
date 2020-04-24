@@ -36,6 +36,10 @@ module.exports = {
     }
     config.resolve.alias = {
       '@': path.resolve(__dirname, 'src'),
+      '@views': path.resolve(__dirname, 'src/views'),
+      '@components': path.resolve(__dirname, 'src/components'),
+      '@libs': path.resolve(__dirname, 'src/libs'),
+      '@api': path.resolve(__dirname, 'src/api'),
     };
 
     // 导入文件的扩展名称顺序
