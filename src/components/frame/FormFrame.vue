@@ -8,7 +8,7 @@
         <a-page-header
           :ghost="false"
           @back="handleToList"
-          subTitle="会员详情"
+          :subTitle="breadCrumbList"
         >
           <template slot="extra">
             <!-- 操作日志按钮 开始 -->
@@ -150,6 +150,9 @@ export default {
     loading() {
       return this.$store.state.app.loading;
     },
+    breadCrumbList() {
+      return '测试标题';
+    }
   },
   watch: {},
   created() {

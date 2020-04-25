@@ -6,14 +6,20 @@ export default [
     path: '/',
     name: 'index',
     component: (resolve) => require(['@/views/main/Index.vue'], resolve),
-    children: []
+    meta: {
+      title: '首页',
+      icon: 'icon-setting'
+    },
+    children: [],
   },
   {
     path: '/home',
     name: 'home',
     component: (resolve) => require(['@/views/home/Home.vue'], resolve),
-    children: [
-    ]
+    meta: {
+      title: '工作台',
+      icon: 'icon-setting'
+    },
   },
   {
     path: '/todoList',
@@ -21,6 +27,7 @@ export default [
     component: (resolve) => require(['@/views/main/Index.vue'], resolve),
     meta: {
       title: '待办事项',
+      icon: 'icon-setting'
     },
   },
   {
@@ -29,6 +36,7 @@ export default [
     component: (resolve) => require(['@/views/main/Index.vue'], resolve),
     meta: {
       title: '消息中心',
+      icon: 'icon-setting'
     },
   },
   {
@@ -37,6 +45,7 @@ export default [
     component: (resolve) => require(['@/views/main/Index.vue'], resolve),
     meta: {
       title: '我的资料',
+      icon: 'icon-setting'
     },
   },
   {

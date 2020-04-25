@@ -17,13 +17,16 @@ export default {
   namespace: true,
   state: {
     // 当前选中的菜单
-    currentMenu: null,
+    currentMenu: [],
 
     // 菜单列表
     menuList: [],
 
     // 权限列表
     permissionList: [],
+
+    // 面包屑导航
+    breadCrumbList: [],
 
     // 多语言支持 zh_CN || en_US
     locale: defaultLang,
@@ -42,6 +45,11 @@ export default {
 
   // 同步更改state的方法
   mutations: {
+    // 设置当前菜单
+    setCurrentMenu(state, name) {
+      state.currentMenu = [name];
+    },
+
     // 设置菜单列表
     setMenuList(state, list) {
       state.menuList = list;
@@ -50,6 +58,11 @@ export default {
     // 设置权限路由列表
     setPermissionList(state, list) {
       state.permissionList = list;
+    },
+
+    // 设置面包屑导航列表
+    setBreadCrumbList(state, list) {
+      state.breadCrumbList = list;
     },
 
     // 切换多语言

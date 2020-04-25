@@ -5,7 +5,8 @@
   <a-menu
     mode="inline"
     theme="dark"
-    :selectedKeys="currentSelectedMenu"
+    :selectable="false"
+    :selectedKeys="currentMenu"
     @click="handleMenuClick"
   >
     <template v-for="item in menuList">
@@ -23,6 +24,7 @@
 </template>
 <script>
 import SubMenu from './SubMenu.vue';
+// import { mapState} from 'vuex';
 
 export default {
   name: 'AppMenu',
@@ -35,11 +37,12 @@ export default {
     };
   },
   computed: {
+    // ...mapState(['menuList', 'currentMenu']),
     menuList() {
       return this.$store.state.app.menuList;
     },
-    currentSelectedMenu() {
-      return [this.$route.name];
+    currentMenu() {
+      return this.$store.state.app.currentMenu;
     }
   },
   methods: {

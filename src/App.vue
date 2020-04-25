@@ -30,7 +30,7 @@ export default {
   },
   computed: {
     lang() {
-      return this.$store.state.app.locale;
+      return this.$store.getters.getLocale;
     }
   },
   created() {

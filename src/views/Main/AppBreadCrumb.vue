@@ -4,32 +4,39 @@
 <template>
   <div class="app-bread-crumb">
     <a-breadcrumb>
-      <a-breadcrumb-item>Home</a-breadcrumb-item>
-      <a-breadcrumb-item><a href="">Application Center</a></a-breadcrumb-item>
-      <a-breadcrumb-item><a href="">Application List</a></a-breadcrumb-item>
-      <a-breadcrumb-item>An Application</a-breadcrumb-item>
+      <a-breadcrumb-item v-for="(item, index) in breadCrumbList" :key="index">
+        <router-link :to="item.path">
+          {{item.breadcrumbName}}
+        </router-link>
+      </a-breadcrumb-item>
     </a-breadcrumb>
   </div>
 </template>
 
 <script>
-  export default {
-    name: 'AppBreadCrumb',
-    components: {},
-    props: {},
-    data() {
-      return {};
-    },
-    computed: {},
-    watch: {},
-    created() {
-    },
-    mounted() {
-    },
-    destroyed() {
-    },
-    methods: {}
-  };
+import { mapState } from 'vuex';
+
+export default {
+  name: 'AppBreadCrumb',
+  components: {},
+  props: {},
+  data() {
+    return {};
+  },
+  computed: {
+    breadCrumbList() {
+      return this.$store.state.app.breadCrumbList;
+    }
+  },
+  watch: {},
+  created() {
+  },
+  mounted() {
+  },
+  destroyed() {
+  },
+  methods: {}
+};
 </script>
 
 <style lang="less" scoped>

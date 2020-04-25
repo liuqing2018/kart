@@ -63,7 +63,7 @@ router.beforeEach((to, from, next) => {
       console.log('============== 3 有权限 ==============');
       if (to.path !== '/login') {
         console.log('============== 3 不是去往登录页面 通过 ==============');
-        next()
+        next();
       } else {
         console.log('============== 3 往登录页面 返回 ==============');
         next(from.fullPath);
@@ -72,6 +72,25 @@ router.beforeEach((to, from, next) => {
   }
 
   next();
+});
+
+router.afterEach((to) => {
+  console.log('====== to ========');
+  console.log(to);
+  const routerList = to.matched;
+  console.log('====== routerList ========');
+  console.log(routerList);
+  // store.commit('setCurrentMenu', to.name);
+
+  const result = [];
+  routerList.forEach(item => {
+    result.push({
+      path: item.path,
+      breadcrumbName: item.meta.title,
+    });
+  });
+
+  store.commit('setBreadCrumbList', result);
 });
 
 new Vue({

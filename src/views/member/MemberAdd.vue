@@ -5,7 +5,7 @@
   <div class="base-content">
     <form-frame @on-save="handleSave" @on-submit="handleSubmit">
       <div slot="content">
-        <a-card title="新建会员">
+        <a-card title="会员信息">
           <a-form-model :model="form" :label-col="labelCol" :wrapper-col="wrapperCol">
             <a-form-model-item label="Activity name">
               <a-input v-model="form.name" />
