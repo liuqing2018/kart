@@ -7,6 +7,9 @@ const defaultLang = 'zh_CN';
 // 默认语言存储在localstorage的key
 const localeKey = 'locale';
 
+// 用户登录标识
+const tokenKey = 'token';
+
 // 接口请求地址
 // const devURL = 'http://localhost:8080';
 const devURL = 'api';
@@ -22,6 +25,7 @@ const colorData = ['#0094da', '#5bc0de', '#e79d47', '#f00', '#5cb85c', '#f4a79d'
 export {
   defaultLang,
   localeKey,
+  tokenKey,
   baseURL,
   maxSize,
   colorData,

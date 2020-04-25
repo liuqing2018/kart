@@ -1,9 +1,10 @@
 /**
  * Created by tudou on 2020/4/21 22:00.
  */
-import axios from 'axios';
+import Axios from 'axios';
 import { message } from 'ant-design-vue';
 import { baseURL } from '@/config';
+import { handleError } from '@/libs/utils';
 import qs from 'qs';
 import store from '../store/index';
 
@@ -21,7 +22,7 @@ post: {
 }
 */
 
-const instance = axios.create({
+const instance = Axios.create({
   // 将自动加在请求地址前面
   baseURL,
 
@@ -50,7 +51,7 @@ const instance = axios.create({
 });
 
 // 取消请求的Handler
-let CancelToken = axios.CancelToken;
+const CancelToken = Axios.CancelToken;
 
 // 存放所有请求的cancel方法
 window.cancelMap = {};
@@ -124,7 +125,7 @@ instance.interceptors.response.use((response) => {
   store.commit('setLoading', false);
 
   // 取消请求
-  if (axios.isCancel(error)) {
+  if (Axios.isCancel(error)) {
     return new Promise(() => {});
   }
 
@@ -133,24 +134,32 @@ instance.interceptors.response.use((response) => {
 
 // get方法请求的第二个参数也是data
 const iAxios = (method, url, data, config) => {
-  if (arguments.length === 1) {
-    return instance(config);
-  }
+  return new Promise((resolve) => {
+    let requestConfig = null;
+    if (arguments.length === 1) {
+      requestConfig = config;
+    } else {
+      let params = null;
+      if (method.toLocaleString() === 'get') {
+        params = data;
+        data = null;
+      }
 
-  let params = null;
-  if (method.toLocaleString() === 'get') {
-    params = data;
-    data = null;
-  }
+      requestConfig = {
+        method,
+        url,
+        data,
+        params,
+        ...config,
+      };
+    }
 
-  const options = {
-    method,
-    url,
-    data,
-    params,
-    ...config,
-  };
-  return instance(options);
+    instance.request(requestConfig).then((response) => {
+      resolve(response);
+    }).catch((error) => {
+      handleError(error); // 统一处理错误
+    });
+  });
 };
 
 // 请求方法的语法糖

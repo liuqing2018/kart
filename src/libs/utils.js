@@ -2,6 +2,7 @@
  * Created by tudou on 2020/4/10 18:40.
  */
 import { message as Message } from 'ant-design-vue';
+import Cookie from 'js-cookie';
 
 // 判断value是否为空
 const isEmpty = (value) => value === '' || value === null || value === undefined;
@@ -17,10 +18,17 @@ const getLocal = (key) => {
 // 获取本地存储的数据
 const setLocal = function setLocal(key, data) {
   if (isEmpty(data)) {
-    return;
+    return '';
   }
   localStorage[key] = JSON.stringify(data);
 };
+
+// 获取cookie
+const getCookie = (key = '') => Cookie.get(key);
+
+// 设置cookie
+const setCookie = (key, data) => Cookie.set(key, data);
+
 
 // 统一处理错误信息
 const handleError = (errorInfo) => {
@@ -180,9 +188,50 @@ const toTimestamp = (time) => new Date(time).getTime() || '';
 // 获取对象类型
 const getType = obj => ({}).toString.call(obj).match(/\s([a-zA-Z]+)/)[1].toLowerCase();
 
+const recursionList = (subList = [], allList = [], key = 'path') => {
+  const result = [];
+  allList.forEach((item) => {
+    subList.forEach((subItem, index) => {
+      if (subItem[key] === item[key]) {
+        if (subItem.children && subItem.children.length > 0) {
+          item.children = recursionList(subItem.children, item.children);
+        }
+        result.push(item);
+      }
+    });
+  });
+  return result;
+};
+
+// 给子路由设置默认跳转
+const setDefaultRoute = (routes) => {
+  routes.forEach((item, index) => {
+    if (item.children && item.children.length > 0) {
+      item.redirect = { name: item.children[0].name };
+      setDefaultRoute(item.children)
+    }
+  })
+};
+
+// const deepClone = (source) => {
+//   if (!source && typeof source !== 'object') {
+//     throw new Error('error arguments', 'shallowClone')
+//   }
+//   const targetObj = source.constructor === Array ? [] : {}
+//   Object.keys(source).forEach(keys => {
+//     if (source[keys] && typeof source[keys] === 'object') {
+//       targetObj[keys] = deepClone(source[keys])
+//     } else {
+//       targetObj[keys] = source[keys]
+//     }
+//   })
+//   return targetObj
+// }
 export {
   getLocal,
   setLocal,
+  getCookie,
+  setCookie,
   isEmpty,
   handleError,
   timeChunk,
@@ -190,4 +239,6 @@ export {
   throttle,
   toTimestamp,
   getType,
+  recursionList,
+  setDefaultRoute,
 };

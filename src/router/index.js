@@ -1,26 +1,17 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-// import Home from '../views/Home.vue';
 
 Vue.use(VueRouter);
 
 const routes = [
   {
-    path: '/',
-    name: 'Home',
-    component: (resolve) => require(['@/views/main/Index.vue'], resolve),
-    children: [
-      {
-        path: '/member',
-        name: 'member',
-        component: (resolve) => require(['@/views/member/MemberList.vue'], resolve),
-      },
-      {
-        path: '/memberAdd',
-        name: 'memberAdd',
-        component: (resolve) => require(['@/views/member/MemberAdd.vue'], resolve),
-      },
-    ]
+    path: '/login',
+    name: 'login',
+    component: (resolve) => require(['@/views/login/Login.vue'], resolve),
+    meta: {
+      title: '登录',
+      isGuest: true, // 不需要登录就能访问
+    },
   },
 ];
 
@@ -31,10 +22,4 @@ const router = new VueRouter({
   routes,
 });
 
-router.beforeEach((to, from, next) => {
-  const cancelList = Object.values(window.cancelMap || {});
-  cancelList.forEach((cancel) => cancel());
-  window.cancelMap = {};
-  next();
-});
 export default router;

@@ -5,25 +5,24 @@
   <a-menu
     mode="inline"
     theme="dark"
-    :defaultSelectedKeys="['1']"
+    :selectedKeys="currentSelectedMenu"
     @click="handleMenuClick"
   >
     <template v-for="item in menuList">
       <sub-menu
         v-if="item.children && item.children.length > 0"
         :menu-data="item"
-        :key="item.url">
+        :key="item.path">
       </sub-menu>
-      <a-menu-item v-else :key="item.url">
-        <i-icon :type="item.icon"></i-icon>
-        <span>{{ item.title }}</span>
+      <a-menu-item v-else :key="item.path">
+        <i-icon :type="item.meta.icon"></i-icon>
+        <span>{{ item.meta.title }}</span>
       </a-menu-item>
     </template>
   </a-menu>
 </template>
 <script>
 import SubMenu from './SubMenu.vue';
-import menuList from '../../mock/menu';
 
 export default {
   name: 'AppMenu',
@@ -32,18 +31,29 @@ export default {
   },
   data() {
     return {
-      menuList
+      myselectedKeys: ['/'],
     };
+  },
+  computed: {
+    menuList() {
+      return this.$store.state.app.menuList;
+    },
+    currentSelectedMenu() {
+      return [this.$route.name];
+    }
   },
   methods: {
     handleMenuClick({ item, key, keyPath }) {
       console.log('handleMenuClick: ');
+      console.log('====== item ============');
       console.log(item);
+      console.log('====== key ============');
       console.log(key);
+      console.log('====== key path ============');
       console.log(keyPath);
       this.$router.push({
-        path: key
-      })
+        name: key
+      });
     },
   }
 };

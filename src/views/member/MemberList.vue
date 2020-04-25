@@ -37,7 +37,6 @@
 
 <script>
 import { memberList, memberInfo } from '@/api/member';
-import { handleError } from '@/libs/utils';
 import QueryFrame from '../../components/frame/QueryFrame.vue';
 import FormItem from '../../components/FormItem.vue';
 import queryMixin from '../../mixin/queryMixin';
@@ -139,8 +138,6 @@ export default {
     handleList(data) {
       memberList(data).then((res) => {
         this.data = res.data;
-      }).catch((error) => {
-        handleError(error);
       });
     },
     handleInfo(data) {

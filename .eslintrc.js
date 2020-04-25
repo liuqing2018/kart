@@ -55,6 +55,9 @@ module.exports = {
 
     // 换行风格
     'linebreak-style': ['off', 'error', 'windows'],
+
+    // 此规则不允许将if语句作为else块中的唯一语句
+    'no-lonely-if': 'off',
   },
   overrides: [
     {
