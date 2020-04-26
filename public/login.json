@@ -1,0 +1,58 @@
+{
+  "message": "登录成功",
+  "status": 200,
+  "data": {
+    "multi_depart": 1,
+    "userInfo": {
+      "id": "a75d45a015c44384a04449ee80dc3503",
+      "username": "jeecg",
+      "realname": "jeecg测试",
+      "avatar": "",
+      "birthday": null,
+      "sex": 2,
+      "email": "41834537@qq.com",
+      "phone": "18611111111",
+      "orgCode": "A01",
+      "status": 1,
+      "delFlag": "0",
+      "workNo": "A002",
+      "post": "高级研发",
+      "telephone": "",
+      "createBy": "admin",
+      "createTime": "2019-02-13 16:02:36",
+      "updateBy": "jeecg",
+      "updateTime": "2020-04-17 13:38:01",
+      "activitiSync": "1",
+      "identity": 2,
+      "departIds": "北京国炬公司",
+      "thirdId": null,
+      "thirdType": null
+    },
+    "departs": [
+      {
+        "id": "c6d7cb4deeac411cb3384b1b31278596",
+        "parentId": "",
+        "departName": "北京国炬公司",
+        "departNameEn": null,
+        "departNameAbbr": null,
+        "departOrder": 0,
+        "description": null,
+        "orgCategory": "1",
+        "orgType": "1",
+        "orgCode": "A01",
+        "mobile": null,
+        "fax": null,
+        "address": null,
+        "memo": null,
+        "status": null,
+        "delFlag": "0",
+        "createBy": "admin",
+        "createTime": "2019-02-11 14:21:51",
+        "updateBy": "admin",
+        "updateTime": "2019-03-22 16:47:19"
+      }
+    ],
+    "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1ODc3ODYzMjEsInVzZXJuYW1lIjoiamVlY2cifQ.ElOY331I11s1tvzC36Gx6aIojt5UCjezJ5M38ODx1qo"
+  },
+  "timestamp": 1587784521761
+}

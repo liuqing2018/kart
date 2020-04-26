@@ -11,8 +11,7 @@ const localeKey = 'locale';
 const tokenKey = 'token';
 
 // 接口请求地址
-// const devURL = 'http://localhost:8080';
-const devURL = 'api';
+const devURL = 'http://localhost:8080';
 const proURL = '/';
 const baseURL = process.env.NODE_ENV === 'development' ? devURL : proURL;
 

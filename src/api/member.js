@@ -4,8 +4,7 @@
 import axios from '../libs/axios';
 
 const memberList = (data) => {
-  // return axios.post('/member/list', data);
-  return axios.get('/test', data);
+  return axios.post('/member/list', data);
 };
 
 const memberInfo = (data) => {
