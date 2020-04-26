@@ -40,10 +40,10 @@ export default {
       return this.$store.state.app.menuList;
     },
     currentMenu: {
-      get () {
+      get() {
         return this.$store.state.app.currentMenu;
       },
-      set (val) {
+      set(val) {
         this.$store.commit('setCurrentMenu', val);
       }
     }
