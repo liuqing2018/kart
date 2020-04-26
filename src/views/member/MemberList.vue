@@ -13,14 +13,14 @@
       @on-size-change="handleSizeChange"
     >
       <template slot="query">
-        <form-item label="用户名">
-          <a-input v-model="queryModel.user" placeholder="用户名"></a-input>
+        <form-item label="门店名称">
+          <a-input v-model="queryModel.storeName" placeholder="门店名称"></a-input>
         </form-item>
-        <form-item label="用户名">
-          <a-input v-model="queryModel.user" placeholder="用户名"></a-input>
+        <form-item label="姓名">
+          <a-input v-model="queryModel.name" placeholder="姓名"></a-input>
         </form-item>
-        <form-item label="用户名">
-          <a-input v-model="queryModel.user" placeholder="用户名"></a-input>
+        <form-item label="手机号">
+          <a-input v-model="queryModel.phone" placeholder="手机号"></a-input>
         </form-item>
       </template>
       <template slot="btns">
@@ -52,8 +52,9 @@ export default {
   data() {
     return {
       queryModel: {
-        user: null,
-        password: null
+        storeName: null,
+        name: null,
+        phone: null,
       },
       // 默认展示表格
       columns: [

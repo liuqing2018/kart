@@ -5,8 +5,7 @@
   <a-menu
     mode="inline"
     theme="dark"
-    :selectable="false"
-    :selectedKeys="currentMenu"
+    v-model="currentMenu"
     @click="handleMenuClick"
   >
     <template v-for="item in menuList">
@@ -37,12 +36,16 @@ export default {
     };
   },
   computed: {
-    // ...mapState(['menuList', 'currentMenu']),
     menuList() {
       return this.$store.state.app.menuList;
     },
-    currentMenu() {
-      return this.$store.state.app.currentMenu;
+    currentMenu: {
+      get () {
+        return this.$store.state.app.currentMenu;
+      },
+      set (val) {
+        this.$store.commit('setCurrentMenu', val);
+      }
     }
   },
   methods: {

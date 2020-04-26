@@ -114,7 +114,6 @@ router.beforeEach((to, from, next) => {
 
 router.afterEach((to) => {
   const routerList = to.matched;
-  // store.commit('setCurrentMenu', to.name);
 
   // 直接把routerList提交过去会报错：！！！ "RangeError: Maximum call stack size exceeded"
   const result = [];
@@ -125,7 +124,11 @@ router.afterEach((to) => {
     });
   });
 
+  // 设置面包屑
   store.commit('setBreadCrumbList', result);
+
+  // 设置当前选中的菜单
+  store.commit('setCurrentMenu', [to.name]);
 });
 
 export default router;

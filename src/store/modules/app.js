@@ -47,7 +47,7 @@ export default {
   mutations: {
     // 设置当前菜单
     setCurrentMenu(state, name) {
-      state.currentMenu = [name];
+      state.currentMenu = name;
     },
 
     // 设置菜单列表
