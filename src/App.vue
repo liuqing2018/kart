@@ -34,8 +34,6 @@ export default {
     }
   },
   created() {
-    console.log('==== this.lang =====', this.lang);
-    console.log(this.locale[this.lang]);
   }
 };
 </script>

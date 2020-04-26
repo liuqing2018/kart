@@ -61,6 +61,11 @@ module.exports = {
 
     // 驼峰命名
     'camelcase': 'off',
+
+    // 匿名方法
+    'func-names': 'off',
+
+    'prefer-rest-params': 'off'
   },
   overrides: [
     {

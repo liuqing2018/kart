@@ -5,9 +5,10 @@
   <div class="app-bread-crumb">
     <a-breadcrumb>
       <a-breadcrumb-item v-for="(item, index) in breadCrumbList" :key="index">
-        <router-link :to="item.path">
+        <router-link :to="item.path" v-if="index < breadCrumbList.length - 1">
           {{item.breadcrumbName}}
         </router-link>
+        <span v-else>{{item.breadcrumbName}}</span>
       </a-breadcrumb-item>
     </a-breadcrumb>
   </div>

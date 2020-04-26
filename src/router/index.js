@@ -61,7 +61,7 @@ router.beforeEach((to, from, next) => {
 
       // 获取权限列表
       // const permissionResponse = await getPermissionListApi();
-      getPermissionListApi.then((permissionResponse) => {
+      getPermissionListApi().then((permissionResponse) => {
         const { menu } = permissionResponse.data;
 
         // 递归权限列表，动态加载有权限的路由
@@ -95,6 +95,9 @@ router.beforeEach((to, from, next) => {
 
         // 最终的路由列表
         store.commit('setPermissionList', [...initialRoutes, ...commonRouter]);
+        next({
+          path: to.path,
+        });
       });
     } else {
       console.log('============== 3 有权限 ==============');
@@ -107,18 +110,13 @@ router.beforeEach((to, from, next) => {
       }
     }
   }
-
-  next();
 });
 
 router.afterEach((to) => {
-  console.log('====== to ========');
-  console.log(to);
   const routerList = to.matched;
-  console.log('====== routerList ========');
-  console.log(routerList);
   // store.commit('setCurrentMenu', to.name);
 
+  // 直接把routerList提交过去会报错：！！！ "RangeError: Maximum call stack size exceeded"
   const result = [];
   routerList.forEach((item) => {
     result.push({
