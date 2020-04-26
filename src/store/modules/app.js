@@ -4,14 +4,14 @@
 import {
   getLocal,
   setLocal,
-  recursionList,
-  setDefaultRoute
+  // recursionList,
+  // setDefaultRoute
 } from '@/libs/utils';
 import { defaultLang, localeKey } from '@/config';
-import { permissionList as getPermissionListApi } from '@/api/user';
-import router from '@/router/index';
-import commonRouter from '@/router/commonRouter';
-import dynamicRouter from '@/router/dynamicRouter';
+// import { permissionList as getPermissionListApi } from '@/api/user';
+// import router from '@/router/index';
+// import commonRouter from '@/router/commonRouter';
+// import dynamicRouter from '@/router/dynamicRouter';
 
 export default {
   namespace: true,
@@ -84,42 +84,42 @@ export default {
 
   // 异步更改state，只能提交到mutations
   actions: {
-    async getPermissionList({ commit }) {
-      // 获取权限列表
-      const permissionResponse = await getPermissionListApi();
-      const { menu } = permissionResponse.data;
-
-      // 递归权限列表，动态加载有权限的路由
-      const permissionRoutes = recursionList(menu, dynamicRouter);
-
-
-      // 找到根路由，并将权限路由添加到里面
-      const rootMenu = commonRouter.find((item) => item.path === '/');
-      const { children } = rootMenu;
-      children.push(...permissionRoutes);
-
-      // 生成导航菜单
-      commit('setMenuList', children);
-
-      /*
-          为所有有children的菜单路由设置第一个children为默认路由
-          主要是供面包屑用，防止点击面包屑后进入某个路由下的 '' 路由,比如/manage/
-          而我们的路由是
-          [
-              /manage/menu1,
-              /manage/menu2
-          ]
-      */
-      setDefaultRoute([rootMenu]);
-
-      // 准备装载权限路由
-      const initialRoutes = router.options.routes;
-
-      // 动态添加路由
-      router.addRoutes(commonRouter);
-
-      // 最终的路由列表
-      commit('setPermissionList', [...initialRoutes, ...commonRouter]);
-    }
+    // async getPermissionList({ commit }) {
+    //   // 获取权限列表
+    //   const permissionResponse = await getPermissionListApi();
+    //   const { menu } = permissionResponse.data;
+    //
+    //   // 递归权限列表，动态加载有权限的路由
+    //   const permissionRoutes = recursionList(menu, dynamicRouter);
+    //
+    //
+    //   // 找到根路由，并将权限路由添加到里面
+    //   const rootMenu = commonRouter.find((item) => item.path === '/');
+    //   const { children } = rootMenu;
+    //   children.push(...permissionRoutes);
+    //
+    //   // 生成导航菜单
+    //   commit('setMenuList', children);
+    //
+    //   /*
+    //       为所有有children的菜单路由设置第一个children为默认路由
+    //       主要是供面包屑用，防止点击面包屑后进入某个路由下的 '' 路由,比如/manage/
+    //       而我们的路由是
+    //       [
+    //           /manage/menu1,
+    //           /manage/menu2
+    //       ]
+    //   */
+    //   setDefaultRoute([rootMenu]);
+    //
+    //   // 准备装载权限路由
+    //   const initialRoutes = router.options.routes;
+    //
+    //   // 动态添加路由
+    //   router.addRoutes(commonRouter);
+    //
+    //   // 最终的路由列表
+    //   commit('setPermissionList', [...initialRoutes, ...commonRouter]);
+    // }
   }
 };

@@ -58,6 +58,9 @@ module.exports = {
 
     // 此规则不允许将if语句作为else块中的唯一语句
     'no-lonely-if': 'off',
+
+    // 驼峰命名
+    'camelcase': 'off',
   },
   overrides: [
     {
