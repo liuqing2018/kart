@@ -4,14 +4,8 @@
 import {
   getLocal,
   setLocal,
-  // recursionList,
-  // setDefaultRoute
 } from '@/libs/utils';
 import { defaultLang, localeKey } from '@/config';
-// import { permissionList as getPermissionListApi } from '@/api/user';
-// import router from '@/router/index';
-// import commonRouter from '@/router/commonRouter';
-// import dynamicRouter from '@/router/dynamicRouter';
 
 export default {
   namespace: true,

@@ -56,9 +56,9 @@
 </template>
 
 <script>
-import AppBreadCrumb from './AppBreadCrumb.vue';
 import { setCookie } from '@/libs/utils';
 import { tokenKey } from '@/config';
+import AppBreadCrumb from './AppBreadCrumb.vue';
 
 export default {
   name: 'AppHeader',
