@@ -11,11 +11,11 @@
     </span>
     <template v-for="menu in props.menuData.children">
       <sub-menu
-        v-if="menu.children && menu.children.length > 0"
+        v-if="menu.children && menu.children.length > 0 && hideInMenu(item.children)"
         :key="menu.path"
         :menu-data="menu">
       </sub-menu>
-      <a-menu-item v-else :key="menu.path">
+      <a-menu-item v-else-if="menu.meta && !menu.meta.hideInMenu" :key="menu.path">
         <i-icon :type="menu.meta.icon"></i-icon>
         <span>{{ menu.meta.title }}</span>
       </a-menu-item>
@@ -33,7 +33,11 @@ export default {
   data() {
     return {};
   },
-  methods: {}
+  methods: {
+    hideInMenu(children) {
+      return children.some((item) => !item.meta.hideInMenu);
+    }
+  }
 };
 </script>
 

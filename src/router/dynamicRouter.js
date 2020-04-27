@@ -1,5 +1,5 @@
 /**
- * Created by tudou on 2020/4/25 10:54.
+ * 动态路由：本页面的路由将会根据服务器返回权限，进行动态匹配
  */
 export default [
   {
@@ -27,6 +27,8 @@ export default [
         component: (resolve) => require(['@/views/member/MemberAdd.vue'], resolve),
         meta: {
           title: '添加会员',
+          hideInMenu: true,
+          activeMenu: 'memberList',
           icon: 'icon-setting'
         }
       },

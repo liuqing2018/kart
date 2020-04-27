@@ -10,7 +10,7 @@
   >
     <template v-for="item in menuList">
       <sub-menu
-        v-if="item.children && item.children.length > 0"
+        v-if="item.children && item.children.length > 0 && hideInMenu(item.children)"
         :menu-data="item"
         :key="item.path">
       </sub-menu>
@@ -32,7 +32,6 @@ export default {
   },
   data() {
     return {
-      myselectedKeys: ['/'],
     };
   },
   computed: {
@@ -61,6 +60,9 @@ export default {
         name: key
       });
     },
+    hideInMenu(children) {
+      return children.some((item) => !item.meta.hideInMenu);
+    }
   }
 };
 </script>

@@ -1,16 +1,15 @@
 /**
-* Created by tudou on 2020/4/25 16:14.
+* Created by tudou on 2020/4/27 20:04.
 */
 <template>
   <div>
-    <h1>Home</h1>
-    <a-button type="primary" @click="handleTest">调整</a-button>
+
   </div>
 </template>
 
 <script>
 export default {
-  name: 'Home',
+  name: 'UserInfo',
   components: {},
   props: {},
   data() {
@@ -24,13 +23,7 @@ export default {
   },
   destroyed() {
   },
-  methods: {
-    handleTest() {
-      this.$router.push({
-        name: 'todoList',
-      });
-    },
-  }
+  methods: {},
 };
 </script>
 

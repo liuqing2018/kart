@@ -51,7 +51,7 @@ const instance = Axios.create({
 });
 
 // 取消请求的Handler
-const CancelToken = Axios.CancelToken;
+const { CancelToken } = Axios;
 
 // 存放所有请求的cancel方法
 window.cancelMap = {};

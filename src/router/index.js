@@ -53,11 +53,6 @@ router.beforeEach((to, from, next) => {
     if (!store.state.app.permissionList.length) {
       // 没有权限 从新获取
       console.log('============== 2 但是没有权限 从新获取 ==============');
-      // store.dispatch('getPermissionList').then(() => {
-      //   next({
-      //     path: to.path,
-      //   });
-      // });
 
       // 获取权限列表
       // const permissionResponse = await getPermissionListApi();
@@ -114,21 +109,26 @@ router.beforeEach((to, from, next) => {
 
 router.afterEach((to) => {
   const routerList = to.matched;
+  let currentMenu = to.name;
 
   // 直接把routerList提交过去会报错：！！！ "RangeError: Maximum call stack size exceeded"
   const result = [];
   routerList.forEach((item) => {
-    result.push({
-      path: item.path,
+    !item.meta.hideInBread && result.push({
+      path: item.path || '/',
       breadcrumbName: item.meta.title,
     });
   });
+
+  if (to.meta && to.meta.hideInMenu) {
+    currentMenu = to.meta.activeMenu;
+  }
 
   // 设置面包屑
   store.commit('setBreadCrumbList', result);
 
   // 设置当前选中的菜单
-  store.commit('setCurrentMenu', [to.name]);
+  store.commit('setCurrentMenu', [currentMenu]);
 });
 
 export default router;
