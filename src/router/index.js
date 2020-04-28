@@ -1,18 +1,23 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import store from '@/store';
-import { getCookie, recursionList, setDefaultRoute, getEffectiveMenu } from '@/libs/utils';
-import { tokenKey } from '@/config';
+import {
+  getCookie,
+  recursionList,
+  setDefaultRoute,
+  getEffectiveMenu,
+} from '@/libs/utils';
+import { isAuth, tokenKey } from '@/config';
 import { permissionList as getPermissionListApi } from '@/api/user';
 import dynamicRouter from '@/router/dynamicRouter';
-import commonRouter from '@/router/commonRouter';
+import commonRouter from '@/router/baseRouter';
 
 Vue.use(VueRouter);
 
 // 解决在控制台的 NavigationDuplicated 报错
 const originalPush = VueRouter.prototype.push;
 VueRouter.prototype.push = function push(location) {
-  return originalPush.call(this, location).catch(err => err);
+  return originalPush.call(this, location).catch((err) => err);
 };
 
 const routes = [
@@ -66,8 +71,7 @@ router.beforeEach((to, from, next) => {
         const { menu } = permissionResponse.data;
 
         // 递归权限列表，动态加载有权限的路由
-        const permissionRoutes = recursionList(menu, dynamicRouter);
-
+        const permissionRoutes = isAuth ? recursionList(menu, dynamicRouter) : dynamicRouter;
 
         // 找到根路由，并将权限路由添加到里面
         const rootMenu = commonRouter.find((item) => item.path === '/');
