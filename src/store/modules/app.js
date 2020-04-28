@@ -5,7 +5,7 @@ import {
   getLocal,
   setLocal,
 } from '@/libs/utils';
-import { defaultLang, localeKey } from '@/config';
+import { defaultLang, localeKey } from '@/libs/config';
 
 export default {
   namespace: true,

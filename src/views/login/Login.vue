@@ -31,7 +31,7 @@
 <script>
 import { login } from '@/api/user';
 import { setCookie } from '@/libs/utils';
-import { tokenKey } from '@/config';
+import { tokenKey } from '@/libs/config';
 
 export default {
   name: 'Login',

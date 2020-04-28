@@ -7,7 +7,7 @@ import {
   setDefaultRoute,
   getEffectiveMenu,
 } from '@/libs/utils';
-import { isAuth, tokenKey } from '@/config';
+import { isAuth, tokenKey } from '@/libs/config';
 import { permissionList as getPermissionListApi } from '@/api/user';
 import dynamicRouter from '@/router/dynamicRouter';
 import commonRouter from '@/router/baseRouter';

@@ -57,7 +57,7 @@
 
 <script>
 import { setCookie } from '@/libs/utils';
-import { tokenKey } from '@/config';
+import { tokenKey } from '@/libs/config';
 import AppBreadCrumb from './AppBreadCrumb.vue';
 
 export default {

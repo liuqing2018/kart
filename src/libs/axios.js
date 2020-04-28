@@ -3,7 +3,7 @@
  */
 import Axios from 'axios';
 import { message } from 'ant-design-vue';
-import { baseURL } from '@/config';
+import { baseURL } from '@/libs/config';
 import { handleError } from '@/libs/utils';
 import qs from 'qs';
 import store from '../store/index';
