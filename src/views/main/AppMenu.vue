@@ -5,12 +5,11 @@
   <a-menu
     mode="inline"
     theme="dark"
-    v-model="currentMenu"
     @click="handleMenuClick"
   >
     <template v-for="item in menuList">
       <sub-menu
-        v-if="item.children && item.children.length > 0 && hideInMenu(item.children)"
+        v-if="item.children && item.children.length > 0"
         :menu-data="item"
         :key="item.path">
       </sub-menu>
@@ -60,9 +59,6 @@ export default {
         name: key
       });
     },
-    hideInMenu(children) {
-      return children.some((item) => !item.meta.hideInMenu);
-    }
   }
 };
 </script>

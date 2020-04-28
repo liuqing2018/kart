@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import store from '@/store';
-import { getCookie, recursionList, setDefaultRoute } from '@/libs/utils';
+import { getCookie, recursionList, setDefaultRoute, getEffectiveMenu } from '@/libs/utils';
 import { tokenKey } from '@/config';
 import { permissionList as getPermissionListApi } from '@/api/user';
 import dynamicRouter from '@/router/dynamicRouter';
@@ -74,18 +74,13 @@ router.beforeEach((to, from, next) => {
         const { children } = rootMenu;
         children.push(...permissionRoutes);
 
-        // 生成导航菜单
-        store.commit('setMenuList', children);
+        // 移除hideInMenu的菜单
+        const menuList = getEffectiveMenu(children);
 
-        /*
-            为所有有children的菜单路由设置第一个children为默认路由
-            主要是供面包屑用，防止点击面包屑后进入某个路由下的 '' 路由,比如/manage/
-            而我们的路由是
-            [
-                /manage/menu1,
-                /manage/menu2
-            ]
-        */
+        // 生成导航菜单
+        store.commit('setMenuList', menuList);
+
+        // 为所有有children的菜单路由设置第一个children为默认路由
         setDefaultRoute([rootMenu]);
 
         // 准备装载权限路由

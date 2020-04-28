@@ -186,12 +186,12 @@ const toTimestamp = (time) => new Date(time).getTime() || '';
 // day.js 转换日期
 
 // 获取对象类型
-const getType = obj => ({}).toString.call(obj).match(/\s([a-zA-Z]+)/)[1].toLowerCase();
+const getType = (obj) => ({}).toString.call(obj).match(/\s([a-zA-Z]+)/)[1].toLowerCase();
 
 const recursionList = (subList = [], allList = [], key = 'path') => {
   const result = [];
   allList.forEach((item) => {
-    subList.forEach((subItem, index) => {
+    subList.forEach((subItem) => {
       if (subItem[key] === item[key]) {
         if (subItem.children && subItem.children.length > 0) {
           item.children = recursionList(subItem.children, item.children);
@@ -205,28 +205,56 @@ const recursionList = (subList = [], allList = [], key = 'path') => {
 
 // 给子路由设置默认跳转
 const setDefaultRoute = (routes) => {
-  routes.forEach((item, index) => {
+  routes.forEach((item) => {
     if (item.children && item.children.length > 0) {
       item.redirect = { name: item.children[0].name };
-      setDefaultRoute(item.children)
+      setDefaultRoute(item.children);
     }
-  })
+  });
 };
 
-// const deepClone = (source) => {
-//   if (!source && typeof source !== 'object') {
-//     throw new Error('error arguments', 'shallowClone')
-//   }
-//   const targetObj = source.constructor === Array ? [] : {}
-//   Object.keys(source).forEach(keys => {
-//     if (source[keys] && typeof source[keys] === 'object') {
-//       targetObj[keys] = deepClone(source[keys])
-//     } else {
-//       targetObj[keys] = source[keys]
-//     }
-//   })
-//   return targetObj
-// }
+// 神拷贝
+const deepClone = (source) => {
+  if (!source && typeof source !== 'object') {
+    throw new Error('参数必须为object类型');
+  }
+
+  const targetObj = source.constructor === Array ? [] : {};
+
+  Object.keys(source).forEach((keys) => {
+    if (source[keys] && typeof source[keys] === 'object') {
+      targetObj[keys] = deepClone(source[keys]);
+    } else {
+      targetObj[keys] = source[keys];
+    }
+  });
+  return targetObj;
+};
+
+// 展示有用的菜单
+const getEffectiveMenu = (menu) => {
+  const menuData = deepClone(menu);
+  const result = [];
+  menuData.forEach((item) => {
+    if (item.children && item.children.length > 0) {
+      // 区分是否有不需要显示的子菜单，有的话移除
+      const showMenuList = item.children.filter((child) => child.meta && !child.meta.hideInMenu);
+      if (showMenuList.length) {
+        item.children = showMenuList;
+        result.push(item);
+      } else {
+        item.children.length = 0;
+        !item.meta.hideInMenu && result.push(item);
+      }
+      getEffectiveMenu(item.children);
+    } else {
+      !item.meta.hideInMenu && result.push(item);
+    }
+  });
+  return result;
+};
+
+
 export {
   getLocal,
   setLocal,
@@ -241,4 +269,6 @@ export {
   getType,
   recursionList,
   setDefaultRoute,
+  getEffectiveMenu,
+  deepClone,
 };
