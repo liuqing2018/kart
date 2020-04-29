@@ -12,6 +12,7 @@
       @on-page-change="handlePageChange"
       @on-size-change="handleSizeChange"
     >
+      <!-- 查询条件开始 -->
       <template slot="query">
         <query-item label="门店名称">
           <a-input v-model="queryModel.storeName" placeholder="门店名称"></a-input>
@@ -26,31 +27,26 @@
           <a-range-picker v-model="queryModel.time"></a-range-picker>
         </query-item>
       </template>
-      <template slot="btns">
-      </template>
-      <template slot="table">
-        <a-table :columns="columns" :dataSource="data" :pagination="false" bordered>
-          <a slot="name" slot-scope="text">{{ text }}</a>
-        </a-table>
-      </template>
-    </query-frame>
+      <!-- 查询条件结束 -->
 
+      <!-- 查询结果 开始 -->
+      <template slot="table">
+        <i-table :columns="columns" :dataSource="data">
+        </i-table>
+      </template>
+      <!-- 查询结果 结束 -->
+    </query-frame>
   </div>
 </template>
 
 <script>
 import { memberList, memberInfo } from '@/api/member';
-import QueryFrame from '../../components/frame/QueryFrame.vue';
-import QueryItem from '../../components/QueryItem.vue';
 import queryMixin from '../../mixin/queryMixin';
 
 export default {
   name: 'MemberList',
   mixins: [queryMixin],
-  components: {
-    QueryFrame,
-    QueryItem,
-  },
+  components: {},
   props: {},
   data() {
     return {

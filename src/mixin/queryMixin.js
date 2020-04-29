@@ -1,7 +1,16 @@
 /**
  * 方法说明：在使用分页的页面引入该mixin，避免相同的方法重复书写；
  */
+import QueryFrame from '@/components/frame/QueryFrame.vue';
+import QueryItem from '@/components/QueryItem.vue';
+import ITable from '@/components/ITable.vue';
+
 export default {
+  components: {
+    QueryFrame,
+    QueryItem,
+    ITable
+  },
   data() {
     return {
       // 分页的相关配置
