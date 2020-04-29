@@ -74,7 +74,7 @@ router.beforeEach((to, from, next) => {
         const permissionRoutes = isAuth ? recursionList(menu, dynamicRouter) : dynamicRouter;
 
         // 找到根路由，并将权限路由添加到里面
-        const rootMenu = commonRouter.find((item) => item.path === '/');
+        const rootMenu = commonRouter.find((item) => item.path === '');
         const { children } = rootMenu;
         children.push(...permissionRoutes);
 

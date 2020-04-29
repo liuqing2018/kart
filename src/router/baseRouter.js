@@ -8,7 +8,7 @@
 * */
 export default [
   {
-    path: '/',
+    path: '',
     name: 'index',
     component: (resolve) => require(['@/views/main/Index.vue'], resolve),
     meta: {
@@ -17,7 +17,7 @@ export default [
     },
     children: [
       {
-        path: 'home',
+        path: '/',
         name: 'home',
         // component: (resolve) => require(['@/views/home/Home.vue'], resolve),
         component: { render(h) { return h('router-view'); } },
