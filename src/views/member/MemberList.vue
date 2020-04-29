@@ -13,15 +13,18 @@
       @on-size-change="handleSizeChange"
     >
       <template slot="query">
-        <form-item label="门店名称">
+        <query-item label="门店名称">
           <a-input v-model="queryModel.storeName" placeholder="门店名称"></a-input>
-        </form-item>
-        <form-item label="姓名">
+        </query-item>
+        <query-item label="姓名">
           <a-input v-model="queryModel.name" placeholder="姓名"></a-input>
-        </form-item>
-        <form-item label="手机号">
+        </query-item>
+        <query-item label="手机号">
           <a-input v-model="queryModel.phone" placeholder="手机号"></a-input>
-        </form-item>
+        </query-item>
+        <query-item label="注册时间">
+          <a-range-picker v-model="queryModel.time"></a-range-picker>
+        </query-item>
       </template>
       <template slot="btns">
       </template>
@@ -38,7 +41,7 @@
 <script>
 import { memberList, memberInfo } from '@/api/member';
 import QueryFrame from '../../components/frame/QueryFrame.vue';
-import FormItem from '../../components/FormItem.vue';
+import QueryItem from '../../components/QueryItem.vue';
 import queryMixin from '../../mixin/queryMixin';
 
 export default {
@@ -46,7 +49,7 @@ export default {
   mixins: [queryMixin],
   components: {
     QueryFrame,
-    FormItem,
+    QueryItem,
   },
   props: {},
   data() {
@@ -55,6 +58,7 @@ export default {
         storeName: null,
         name: null,
         phone: null,
+        time: null,
       },
       // 默认展示表格
       columns: [
@@ -145,7 +149,7 @@ export default {
       memberInfo(data).then((res) => {
         console.log(res);
       });
-    }
+    },
   }
 };
 </script>

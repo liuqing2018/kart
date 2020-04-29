@@ -9,7 +9,7 @@
 
 <script>
 export default {
-  name: 'FormItem',
+  name: 'QueryItem',
   components: {},
   props: {
     label: {
