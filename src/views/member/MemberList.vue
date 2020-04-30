@@ -32,13 +32,6 @@
       <!-- 查询结果 开始 -->
       <template slot="table">
         <i-table :columns="columns" :dataSource="dataList">
-          <!--<span slot="action" slot-scope="row">-->
-            <!--<a>查看</a>-->
-            <!--<a-divider type="vertical" />-->
-            <!--<a>编辑</a>-->
-            <!--<a-divider type="vertical" />-->
-          <!--</span>-->
-          <!--<a slot="name" slot-scope="row">{{ row.text }}</a>-->
         </i-table>
       </template>
       <!-- 查询结果 结束 -->
@@ -48,12 +41,15 @@
 
 <script>
 import { memberList, memberInfo } from '@/api/member';
-import queryMixin from '../../mixin/queryMixin';
+import queryMixin from '@/mixin/queryMixin';
+import IButtonDelete from '@/components/IButtonDelete.vue';
 
 export default {
   name: 'MemberList',
   mixins: [queryMixin],
-  components: {},
+  components: {
+    IButtonDelete
+  },
   props: {},
   data() {
     return {
@@ -76,7 +72,6 @@ export default {
           title: '姓名',
           dataIndex: 'name',
           key: 'name',
-          scopedSlots: { customRender: 'name' },
           width: 120,
         },
         {
@@ -104,7 +99,7 @@ export default {
           dataIndex: 'address',
           key: 'address',
           // ellipsis: true,
-          width: 120,
+          // width: 120,
         },
         {
           title: '余额',
@@ -116,7 +111,7 @@ export default {
           title: '注册时间',
           dataIndex: 'createTime',
           key: 'createTime',
-          width: 120,
+          width: 220,
         },
         {
           title: '操作',
@@ -126,44 +121,14 @@ export default {
           width: 200,
           scopedSlots: { customRender: 'action' },
           customRender: (text, row, index) => {
-            console.log(text);
-            console.log(row);
-            console.log(index);
-            const htmlObj = "<button type=\"button\">按钮</button>";
-            return htmlObj;
+            return (
+              <section>
+                <a-button type="link" size="small" onClick={ () => this.handleEdit(row) }>编辑</a-button>
+                <a-divider type="vertical"></a-divider>
+                <i-button-delete on-on-confirm={ () => this.handleDelete(row) }></i-button-delete>
+              </section>
+            );
           }
-          // customRow: (h) => { h('div', {
-          //   // Component props
-          //   props: {
-          //     msg: 'hi',
-          //   },
-          //   attrs: {
-          //     id: 'foo'
-          //   },
-          //   // DOM props
-          //   domProps: {
-          //     innerHTML: 'bar'
-          //   },
-          //   on: {
-          //     click: this.clickHandler
-          //   },
-          //   nativeOn: {
-          //     click: this.nativeClickHandler
-          //   },
-          //   class: {
-          //     foo: true,
-          //     bar: false
-          //   },
-          //   style: {
-          //     color: 'red',
-          //     fontSize: '14px'
-          //   },
-          //   key: 'key',
-          //   ref: 'ref',
-          //   refInFor: true,
-          //   slot: 'slot'
-          // }, 'dvi')
-          // }
         }
       ],
       dataList: []
@@ -172,13 +137,14 @@ export default {
   computed: {},
   watch: {},
   created() {
-    // this.handleQuery();
+    this.handleQuery();
   },
   mounted() {
   },
   destroyed() {
   },
   methods: {
+    // 获取会员列表
     getData() {
       const params = {
         page: this.page.current,
@@ -186,26 +152,34 @@ export default {
         name: 'leo',
         age: 30,
       };
-      // this.handleInfo(params);
-      this.handleList(params);
+      memberList(params).then((res) => {
+        console.log(res);
+        this.dataList = res.data;
+      });
     },
+
+    // 添加会员
     handleAdd() {
       this.$router.push({
         name: 'memberAdd'
       });
     },
-    handleList(data) {
-      memberList(data).then((res) => {
-        this.dataList = res.data;
+
+    // 编辑
+    handleEdit(row) {
+      console.log(row);
+      this.$router.push({
+        name: 'memberEdit',
+        params: {
+          id: row.id
+        }
       });
     },
-    handleInfo(data) {
-      memberInfo(data).then((res) => {
-        console.log(res);
-      });
-    },
-    clickHandler() {
-      console.log('======= clickHandler ===========');
+
+    // 删除
+    handleDelete(row, index) {
+      console.log(row);
+      this.dataList.splice(index, 1);
     }
   }
 };
