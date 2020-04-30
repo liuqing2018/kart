@@ -40,7 +40,7 @@
 </template>
 
 <script>
-import { memberList, memberInfo } from '@/api/member';
+import { memberList } from '@/api/member';
 import queryMixin from '@/mixin/queryMixin';
 import IButtonDelete from '@/components/IButtonDelete.vue';
 
@@ -48,6 +48,7 @@ export default {
   name: 'MemberList',
   mixins: [queryMixin],
   components: {
+    // eslint-disable-next-line
     IButtonDelete
   },
   props: {},
@@ -121,6 +122,7 @@ export default {
           width: 200,
           scopedSlots: { customRender: 'action' },
           customRender: (text, row, index) => {
+            console.log(index);
             return (
               <section>
                 <a-button type="link" size="small" onClick={ () => this.handleEdit(row) }>编辑</a-button>

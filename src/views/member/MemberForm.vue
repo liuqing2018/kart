@@ -3,134 +3,67 @@
 */
 <template>
   <div class="base-content">
-    <form-frame @on-save="handleSave" @on-submit="handleSubmit">
+    <form-frame
+      @on-reset="handleReset"
+      @on-save="handleSave"
+      @on-submit="handleSubmit">
       <div slot="content">
         <a-card title="会员信息">
-          <a-form-model :model="form" :label-col="labelCol" :wrapper-col="wrapperCol">
-            <a-form-model-item label="Activity name">
-              <a-input v-model="form.name" />
-            </a-form-model-item>
-            <a-form-model-item label="Activity zone">
-              <a-select v-model="form.region" placeholder="please select your zone">
-                <a-select-option value="shanghai">
-                  Zone one
-                </a-select-option>
-                <a-select-option value="beijing">
-                  Zone two
-                </a-select-option>
-              </a-select>
-            </a-form-model-item>
-            <a-form-model-item label="Activity time">
+          <a-form-model
+            ref="form"
+            :model="form"
+            :rules="rules"
+            :label-col="{span:8}"
+            :wrapper-col="{span:14}">
+            <a-row>
+              <a-col :span="10">
+                <a-form-model-item label="姓名" prop="name">
+                  <a-input v-model="form.name"></a-input>
+                </a-form-model-item>
+              </a-col>
+            </a-row>
+            <a-row>
+              <a-col :span="10">
+                <a-form-model-item label="手机号" prop="phone">
+                  <a-input v-model="form.phone"></a-input>
+                </a-form-model-item>
+              </a-col>
+            </a-row>
+            <a-row>
+              <a-col :span="10">
+                <a-form-model-item label="会员卡号" prop="cardNo">
+                  <a-input v-model="form.cardNo"></a-input>
+                </a-form-model-item>
+              </a-col>
+            </a-row>
+            <a-row>
+              <a-col :span="10">
+            <a-form-model-item label="出生日期" prop="birthDay">
               <a-date-picker
-                v-model="form.date1"
-                show-time
+                v-model="form.birthDay"
                 type="date"
                 placeholder="Pick a date"
-                style="width: 100%;"
-              />
+                style="width: 100%;">
+              </a-date-picker>
             </a-form-model-item>
-            <a-form-model-item label="Instant delivery">
-              <a-switch v-model="form.delivery" />
-            </a-form-model-item>
-            <a-form-model-item label="Activity type">
-              <a-checkbox-group v-model="form.type">
-                <a-checkbox value="1" name="type">
-                  Online
-                </a-checkbox>
-                <a-checkbox value="2" name="type">
-                  Promotion
-                </a-checkbox>
-                <a-checkbox value="3" name="type">
-                  Offline
-                </a-checkbox>
-              </a-checkbox-group>
-            </a-form-model-item>
-            <a-form-model-item label="Resources">
-              <a-radio-group v-model="form.resource">
-                <a-radio value="1">
-                  Sponsor
-                </a-radio>
-                <a-radio value="2">
-                  Venue
-                </a-radio>
-              </a-radio-group>
-            </a-form-model-item>
-            <a-form-model-item label="Activity form">
-              <a-input v-model="form.desc" type="textarea" />
-            </a-form-model-item>
-            <!--<a-form-model-item :wrapper-col="{ span: 14, offset: 4 }">-->
-            <!--<a-button type="primary" @click="onSubmit">-->
-            <!--Create-->
-            <!--</a-button>-->
-            <!--<a-button style="margin-left: 10px;">-->
-            <!--Cancel-->
-            <!--</a-button>-->
-            <!--</a-form-model-item>-->
+              </a-col>
+            </a-row>
+            <a-row>
+              <a-col :span="10">
+                <a-form-model-item label="个人简介" prop="desc">
+                  <a-input v-model="form.desc" type="textarea"></a-input>
+                </a-form-model-item>
+              </a-col>
+            </a-row>
+            <a-row>
+              <a-col :span="10">
+                <a-form-model-item label="备注" prop="remark">
+                  <a-input v-model="form.remark" type="textarea"></a-input>
+                </a-form-model-item>
+              </a-col>
+            </a-row>
           </a-form-model>
         </a-card>
-        <!--<a-card title="新建会员" style="margin-top: 20px; border: 1px solid blue">-->
-          <!--<a-form-model :model="form" :label-col="labelCol" :wrapper-col="wrapperCol">-->
-            <!--<a-form-model-item label="Activity name">-->
-              <!--<a-input v-model="form.name" />-->
-            <!--</a-form-model-item>-->
-            <!--<a-form-model-item label="Activity zone">-->
-              <!--<a-select v-model="form.region" placeholder="please select your zone">-->
-                <!--<a-select-option value="shanghai">-->
-                  <!--Zone one-->
-                <!--</a-select-option>-->
-                <!--<a-select-option value="beijing">-->
-                  <!--Zone two-->
-                <!--</a-select-option>-->
-              <!--</a-select>-->
-            <!--</a-form-model-item>-->
-            <!--<a-form-model-item label="Activity time">-->
-              <!--<a-date-picker-->
-                <!--v-model="form.date1"-->
-                <!--show-time-->
-                <!--type="date"-->
-                <!--placeholder="Pick a date"-->
-                <!--style="width: 100%;"-->
-              <!--/>-->
-            <!--</a-form-model-item>-->
-            <!--<a-form-model-item label="Instant delivery">-->
-              <!--<a-switch v-model="form.delivery" />-->
-            <!--</a-form-model-item>-->
-            <!--<a-form-model-item label="Activity type">-->
-              <!--<a-checkbox-group v-model="form.type">-->
-                <!--<a-checkbox value="1" name="type">-->
-                  <!--Online-->
-                <!--</a-checkbox>-->
-                <!--<a-checkbox value="2" name="type">-->
-                  <!--Promotion-->
-                <!--</a-checkbox>-->
-                <!--<a-checkbox value="3" name="type">-->
-                  <!--Offline-->
-                <!--</a-checkbox>-->
-              <!--</a-checkbox-group>-->
-            <!--</a-form-model-item>-->
-            <!--<a-form-model-item label="Resources">-->
-              <!--<a-radio-group v-model="form.resource">-->
-                <!--<a-radio value="1">-->
-                  <!--Sponsor-->
-                <!--</a-radio>-->
-                <!--<a-radio value="2">-->
-                  <!--Venue-->
-                <!--</a-radio>-->
-              <!--</a-radio-group>-->
-            <!--</a-form-model-item>-->
-            <!--<a-form-model-item label="Activity form">-->
-              <!--<a-input v-model="form.desc" type="textarea" />-->
-            <!--</a-form-model-item>-->
-            <!--&lt;!&ndash;<a-form-model-item :wrapper-col="{ span: 14, offset: 4 }">&ndash;&gt;-->
-            <!--&lt;!&ndash;<a-button type="primary" @click="onSubmit">&ndash;&gt;-->
-            <!--&lt;!&ndash;Create&ndash;&gt;-->
-            <!--&lt;!&ndash;</a-button>&ndash;&gt;-->
-            <!--&lt;!&ndash;<a-button style="margin-left: 10px;">&ndash;&gt;-->
-            <!--&lt;!&ndash;Cancel&ndash;&gt;-->
-            <!--&lt;!&ndash;</a-button>&ndash;&gt;-->
-            <!--&lt;!&ndash;</a-form-model-item>&ndash;&gt;-->
-          <!--</a-form-model>-->
-        <!--</a-card>-->
       </div>
     </form-frame>
   </div>
@@ -141,24 +74,41 @@ import { memberList } from '@/api/member';
 import FormFrame from '@/components/frame/FormFrame.vue';
 
 export default {
-  name: 'MemberAdd',
+  name: 'MemberForM',
   components: {
     FormFrame,
   },
   props: {},
   data() {
     return {
-      labelCol: { span: 4 },
-      wrapperCol: { span: 14 },
       form: {
         name: '',
-        region: undefined,
-        date1: undefined,
-        delivery: false,
-        type: [],
-        resource: '',
+        phone: '',
+        cardNo: '',
+        birthDay: null,
         desc: '',
+        remark: ''
       },
+      rules: {
+        name: [
+          {
+            required: true,
+            message: '请输入姓名'
+          }
+        ],
+        phone: [
+          {
+            required: true,
+            message: '请输入手机号'
+          }
+        ],
+        cardNo: [
+          {
+            required: true,
+            message: '请输入会员卡号'
+          }
+        ]
+      }
     };
   },
   computed: {},
@@ -170,6 +120,9 @@ export default {
   destroyed() {
   },
   methods: {
+    handleReset() {
+      this.$refs.form.resetFields();
+    },
     handleSave() {
       console.log('======== add handleSave =========');
       memberList().then((res) => {
@@ -179,11 +132,13 @@ export default {
       });
     },
     handleSubmit() {
-      console.log('======== add handleSubmit =========');
-      memberList().then((res) => {
-        console.log(res);
-      }).catch((error) => {
-        console.log(error);
+      this.$refs.form.validate((valid) => {
+        if (valid) {
+          console.log('验证通过...');
+        } else {
+          this.$message.error('请按要求填写');
+          return false;
+        }
       });
     }
   }
