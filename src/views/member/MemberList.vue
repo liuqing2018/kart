@@ -31,7 +31,14 @@
 
       <!-- 查询结果 开始 -->
       <template slot="table">
-        <i-table :columns="columns" :dataSource="data">
+        <i-table :columns="columns" :dataSource="dataList">
+          <!--<span slot="action" slot-scope="row">-->
+            <!--<a>查看</a>-->
+            <!--<a-divider type="vertical" />-->
+            <!--<a>编辑</a>-->
+            <!--<a-divider type="vertical" />-->
+          <!--</span>-->
+          <!--<a slot="name" slot-scope="row">{{ row.text }}</a>-->
         </i-table>
       </template>
       <!-- 查询结果 结束 -->
@@ -63,6 +70,7 @@ export default {
           dataIndex: 'storeName',
           key: 'storeName',
           ellipsis: true,
+          width: 200
         },
         {
           title: '姓名',
@@ -76,12 +84,14 @@ export default {
           dataIndex: 'cardNo',
           key: 'cardNo',
           ellipsis: true,
+          width: 120
         },
         {
           title: '手机号',
           dataIndex: 'phone',
           key: 'phone',
           ellipsis: true,
+          width: 120,
         },
         {
           title: '年龄',
@@ -93,22 +103,70 @@ export default {
           title: '地址',
           dataIndex: 'address',
           key: 'address',
-          ellipsis: true,
+          // ellipsis: true,
+          width: 120,
         },
         {
           title: '余额',
           dataIndex: 'balance',
           key: 'balance',
-          ellipsis: true,
+          width: 120,
         },
         {
           title: '注册时间',
           dataIndex: 'createTime',
           key: 'createTime',
-          ellipsis: true,
+          width: 120,
         },
+        {
+          title: '操作',
+          dataIndex: 'action',
+          key: 'action',
+          fixed: 'right',
+          width: 200,
+          scopedSlots: { customRender: 'action' },
+          customRender: (text, row, index) => {
+            console.log(text);
+            console.log(row);
+            console.log(index);
+            const htmlObj = "<button type=\"button\">按钮</button>";
+            return htmlObj;
+          }
+          // customRow: (h) => { h('div', {
+          //   // Component props
+          //   props: {
+          //     msg: 'hi',
+          //   },
+          //   attrs: {
+          //     id: 'foo'
+          //   },
+          //   // DOM props
+          //   domProps: {
+          //     innerHTML: 'bar'
+          //   },
+          //   on: {
+          //     click: this.clickHandler
+          //   },
+          //   nativeOn: {
+          //     click: this.nativeClickHandler
+          //   },
+          //   class: {
+          //     foo: true,
+          //     bar: false
+          //   },
+          //   style: {
+          //     color: 'red',
+          //     fontSize: '14px'
+          //   },
+          //   key: 'key',
+          //   ref: 'ref',
+          //   refInFor: true,
+          //   slot: 'slot'
+          // }, 'dvi')
+          // }
+        }
       ],
-      data: []
+      dataList: []
     };
   },
   computed: {},
@@ -138,7 +196,7 @@ export default {
     },
     handleList(data) {
       memberList(data).then((res) => {
-        this.data = res.data;
+        this.dataList = res.data;
       });
     },
     handleInfo(data) {
@@ -146,6 +204,9 @@ export default {
         console.log(res);
       });
     },
+    clickHandler() {
+      console.log('======= clickHandler ===========');
+    }
   }
 };
 </script>
