@@ -3,10 +3,10 @@
 */
 <template>
   <a-popconfirm
-    :title="title"
+    :title="confirmTitle"
     @confirm="handleConfirm"
   >
-    <a-button type="link" size="small">{{label}}</a-button>
+    <a-button type="link" size="small">{{btnText}}</a-button>
   </a-popconfirm>
 </template>
 
@@ -16,17 +16,22 @@
     props: {
       title: {
         type: String,
-        default: '此操作将永久删除该数据，请确定是否要删除？'
       },
       label: {
         type: String,
-        default: '删除'
       }
     },
     data() {
       return {};
     },
-    computed: {},
+    computed: {
+      confirmTitle() {
+        return this.title || this.$t('common.deleteConfim');
+      },
+      btnText() {
+        return this.label || this.$t('common.deleteBtn');
+      }
+    },
     created() {
     },
     methods: {

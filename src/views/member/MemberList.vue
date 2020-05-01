@@ -125,7 +125,7 @@ export default {
             console.log(index);
             return (
               <section>
-                <a-button type="link" size="small" onClick={ () => this.handleEdit(row) }>编辑</a-button>
+                <a-button type="link" size="small" onClick={ () => this.handleEdit(row) }>{this.$t('common.editBtn')}</a-button>
                 <a-divider type="vertical"></a-divider>
                 <i-button-delete on-on-confirm={ () => this.handleDelete(row) }></i-button-delete>
               </section>
