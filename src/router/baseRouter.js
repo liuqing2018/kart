@@ -23,7 +23,7 @@ export default [
         component: { render(h) { return h('router-view'); } },
         meta: {
           title: '工作台',
-          hideInMenu: true,
+          // hideInMenu: true,
           hideInBread: true,
           icon: 'icon-setting'
         },
