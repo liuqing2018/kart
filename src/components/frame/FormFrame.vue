@@ -83,7 +83,7 @@ export default {
     },
     logVisiable: { // 是否显示操作日志按钮
       type: Boolean,
-      default: true,
+      default: false,
     },
     logDisable: { // 是否禁用操作日志按钮
       type: Boolean,
@@ -105,7 +105,7 @@ export default {
     },
     saveVisiable: { // 是否显示保存按钮
       type: Boolean,
-      default: true,
+      default: false,
     },
     saveDisable: { // 是否禁用保存按钮
       type: Boolean,

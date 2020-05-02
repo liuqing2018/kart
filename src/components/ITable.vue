@@ -5,7 +5,7 @@
     :columns="columns"
     :dataSource="dataSource"
     :pagination="false"
-    :scroll="{ x: 1300 }">
+    :scroll="{ x: 1000 }">
   </a-table>
 </template>
 

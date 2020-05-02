@@ -1,32 +1,57 @@
 export default [
   {
-    path: '/order',
+    path: 'order',
     name: 'order',
-    // component: { render(h) { return h('router-view'); } },
-    component: (resolve) => require(['@/views/recharge/RechargeList.vue'], resolve),
+    component: { render(h) { return h('router-view'); } },
     meta: {
       title: '订单管理',
       icon: 'icon-setting'
     },
     children: [
-      // {
-      //   path: 'list',
-      //   name: 'rechargeList',
-      //   component: (resolve) => require(['@/views/recharge/RechargeList.vue'], resolve),
-      //   meta: {
-      //     title: '充值列表',
-      //     icon: 'icon-setting'
-      //   }
-      // },
-      // {
-      //   path: 'rule',
-      //   name: 'rechargeRule',
-      //   component: (resolve) => require(['@/views/recharge/RechargeRule.vue'], resolve),
-      //   meta: {
-      //     title: '充值规则',
-      //     icon: 'icon-setting'
-      //   }
-      // },
+      {
+        path: 'orderList',
+        name: 'orderList',
+        component: (resolve) => require(['@/views/order/OrderList.vue'], resolve),
+        meta: {
+          title: '订单列表',
+          hideInMenu: true,
+          hideInBread: true,
+          icon: 'icon-setting'
+        }
+      },
+      {
+        path: 'orderInfo',
+        name: 'orderInfo',
+        component: (resolve) => require(['@/views/order/OrderForm.vue'], resolve),
+        meta: {
+          title: '订单详情',
+          hideInMenu: true,
+          // hideInBread: true,
+          activeMenu: 'orderList',
+          icon: 'icon-setting'
+        },
+      },
+      {
+        path: 'orderEdit',
+        name: 'orderEdit',
+        component: (resolve) => require(['@/views/order/OrderForm.vue'], resolve),
+        meta: {
+          title: '退单',
+          hideInMenu: true,
+          // hideInBread: true,
+          activeMenu: 'orderList',
+          icon: 'icon-setting'
+        },
+      }
     ]
-  }
+  },
+  // {
+  //   path: 'orderInfo',
+  //   name: 'orderInfo',
+  //   component: (resolve) => require(['@/views/order/OrderForm.vue'], resolve),
+  //   meta: {
+  //     title: '订单详情',
+  //     icon: 'icon-setting'
+  //   },
+  // }
 ];
