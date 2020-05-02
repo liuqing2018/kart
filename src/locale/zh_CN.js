@@ -12,6 +12,8 @@ export default {
     resetBtn: '重置',
     loading: '拼命处理中...',
     addBtn: '添加',
+    editBtn: '编辑',
+    viewBtn: '查看',
     downloadBtn: '下载',
     printBtn: '打印',
     deleteBtn: '删除',
@@ -22,5 +24,6 @@ export default {
     barFold: '收起',
     pageTotal: '共',
     pageItem: '条',
+    deleteConfim: '此操作将永久删除该数据，请确定是否要删除？'
   }
 };

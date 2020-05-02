@@ -1,6 +1,11 @@
 <!-- 统一table样式 -->
 <template>
-  <a-table :columns="columns" :dataSource="dataSource" :pagination="false" bordered>
+  <a-table
+    bordered
+    :columns="columns"
+    :dataSource="dataSource"
+    :pagination="false"
+    :scroll="{ x: 1300 }">
   </a-table>
 </template>
 

@@ -12,6 +12,8 @@ export default {
     resetBtn: 'Reset',
     loading: 'Loading...',
     addBtn: 'Add',
+    editBtn: 'Edit',
+    viewBtn: 'View',
     downloadBtn: 'Download',
     printBtn: 'Print',
     deleteBtn: 'Delete',
@@ -22,5 +24,6 @@ export default {
     barFold: 'Fold',
     pageTotal: 'Total',
     pageItem: 'items',
+    deleteConfim: 'Are you sure to delete this task?',
   },
 };

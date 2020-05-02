@@ -151,7 +151,7 @@ export default {
       return this.$store.state.app.loading;
     },
     breadCrumbList() {
-      return '测试标题';
+      return '';
     }
   },
   watch: {},
