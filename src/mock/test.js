@@ -9,8 +9,8 @@ const data = [
   },
 ];
 
-const result = data.some((item) => {
-  return !item.name;
+const result = data.map((item) => {
+  return item.value;
 });
 
 console.log(result);

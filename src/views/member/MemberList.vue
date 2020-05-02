@@ -31,7 +31,7 @@
 
       <!-- 查询结果 开始 -->
       <template slot="table">
-        <i-table :columns="columns" :dataSource="data">
+        <i-table :columns="columns" :dataSource="dataList">
         </i-table>
       </template>
       <!-- 查询结果 结束 -->
@@ -40,13 +40,17 @@
 </template>
 
 <script>
-import { memberList, memberInfo } from '@/api/member';
-import queryMixin from '../../mixin/queryMixin';
+import { memberList } from '@/api/member';
+import queryMixin from '@/mixin/queryMixin';
+import IButtonDelete from '@/components/IButtonDelete.vue';
 
 export default {
   name: 'MemberList',
   mixins: [queryMixin],
-  components: {},
+  components: {
+    // eslint-disable-next-line
+    IButtonDelete
+  },
   props: {},
   data() {
     return {
@@ -63,12 +67,12 @@ export default {
           dataIndex: 'storeName',
           key: 'storeName',
           ellipsis: true,
+          width: 200
         },
         {
           title: '姓名',
           dataIndex: 'name',
           key: 'name',
-          scopedSlots: { customRender: 'name' },
           width: 120,
         },
         {
@@ -76,12 +80,14 @@ export default {
           dataIndex: 'cardNo',
           key: 'cardNo',
           ellipsis: true,
+          width: 120
         },
         {
           title: '手机号',
           dataIndex: 'phone',
           key: 'phone',
           ellipsis: true,
+          width: 120,
         },
         {
           title: '年龄',
@@ -93,34 +99,54 @@ export default {
           title: '地址',
           dataIndex: 'address',
           key: 'address',
-          ellipsis: true,
+          // ellipsis: true,
+          // width: 120,
         },
         {
           title: '余额',
           dataIndex: 'balance',
           key: 'balance',
-          ellipsis: true,
+          width: 120,
         },
         {
           title: '注册时间',
           dataIndex: 'createTime',
           key: 'createTime',
-          ellipsis: true,
+          width: 220,
         },
+        {
+          title: '操作',
+          dataIndex: 'action',
+          key: 'action',
+          fixed: 'right',
+          width: 200,
+          scopedSlots: { customRender: 'action' },
+          customRender: (text, row, index) => {
+            console.log(index);
+            return (
+              <section>
+                <a-button type="link" size="small" onClick={ () => this.handleEdit(row) }>{this.$t('common.editBtn')}</a-button>
+                <a-divider type="vertical"></a-divider>
+                <i-button-delete on-on-confirm={ () => this.handleDelete(row) }></i-button-delete>
+              </section>
+            );
+          }
+        }
       ],
-      data: []
+      dataList: []
     };
   },
   computed: {},
   watch: {},
   created() {
-    // this.handleQuery();
+    this.handleQuery();
   },
   mounted() {
   },
   destroyed() {
   },
   methods: {
+    // 获取会员列表
     getData() {
       const params = {
         page: this.page.current,
@@ -128,24 +154,35 @@ export default {
         name: 'leo',
         age: 30,
       };
-      // this.handleInfo(params);
-      this.handleList(params);
+      memberList(params).then((res) => {
+        console.log(res);
+        this.dataList = res.data;
+      });
     },
+
+    // 添加会员
     handleAdd() {
       this.$router.push({
         name: 'memberAdd'
       });
     },
-    handleList(data) {
-      memberList(data).then((res) => {
-        this.data = res.data;
+
+    // 编辑
+    handleEdit(row) {
+      console.log(row);
+      this.$router.push({
+        name: 'memberEdit',
+        params: {
+          id: row.id
+        }
       });
     },
-    handleInfo(data) {
-      memberInfo(data).then((res) => {
-        console.log(res);
-      });
-    },
+
+    // 删除
+    handleDelete(row, index) {
+      console.log(row);
+      this.dataList.splice(index, 1);
+    }
   }
 };
 </script>
